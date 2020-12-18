@@ -105,6 +105,11 @@ hr.menu {
    background-color: #bbb;
 }
 
+.input-element{
+font-size: 100px;
+width: 400px;
+}
+
 @media screen and (min-width:1070px) {
     section.article {
         display: inline-block;
@@ -585,4 +590,8 @@ blockquote {
 @keyframes slidedown {
     0% { transform: translate(0, -60px); opacity: 0; }
     100% { transform: translate(0, 0); opacity: 1; }
+}
+
+input {
+	font-size: 20px;
 }
