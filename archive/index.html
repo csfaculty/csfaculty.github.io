@@ -1,0 +1,23 @@
+---
+layout: page
+title: Archive
+role: index
+---
+
+<div class="archives">
+   <div class="desc">
+	   <a href="/flux.xml"><span class="oi" data-glyph="rss"></span> <em>RSS Feed</em></a>
+   </div>
+   <div>
+	<ul>
+   {% for post in site.posts %}
+	    <li>
+		<a {% if post.en %}class="en"{% endif %}{% if post.serif %}class="serif"{% endif %} href="{{ post.url }}">
+		<time datetime='{{ post.date | date: "%Y-%m-%d" }}'>{{ post.date | date: "%-d %B %Y" }}</time>
+		{{ post.title }}
+		</a>
+	   </li>
+   {% endfor %}
+	</ul>
+   </div>
+</div>

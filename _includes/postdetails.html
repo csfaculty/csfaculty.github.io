@@ -1,0 +1,39 @@
+<section class="article {%  if page.centered == true %}centered{% endif %}">
+    <article>
+    <time datetime='{{ post.date | date: "%Y-%m-%d" }}' class="top"><span class="oi" data-glyph="bookmark"></span> {{ page.date | date: "%-d %B %Y" }}</time>
+
+    <hgroup>
+    {% if page.link %}
+        <h1><a target=_blank href="{{ page.link | escape }}">{{ page.title }}</a>&nbsp;<span class="oi" data-glyph="external-link" style="font-size:50%;"></span></h1>
+    {% elsif page.series %}
+        <h1><a href=".{{ page.series.url }}">{{ page.series.name }}</a> #{{ page.series.index }} : {{ page.series.episode }}</h1>
+    {% else %}
+        <h1>{{ page.title }}</h1>
+    {% endif %}
+    </hgroup>
+
+    <div id="post"{% if page.link %} class=link{% endif %}>
+        {{ content }}
+    </div>
+
+    </article>
+</section>
+
+{% unless page.comments == false %}
+      {% if site.invitationmsg %}
+      <div class="invitation">
+	  <div>
+	      <span class="oi" data-glyph="chat" style="padding-right: 12px;"></span> {{ site.invitationmsg }}
+	  </div>
+      </div>
+      {% endif %}
+{% endunless %}
+
+
+<div class="readnext">
+{% if page.previous.url %}
+<a href="{{page.previous.url}}" title="Previous Post: {{page.previous.title}}">
+	<span><span class="oi" style="margin-right:12px" data-glyph="script"></span> Read next</span>
+	<h1>{{page.previous.title}}</h1></a>
+{% endif %}
+</div> 

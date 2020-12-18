@@ -1,0 +1,24 @@
+---
+layout: default
+lang: fr
+---
+<section class="article page" {% if page.center %}style="text-align: center;"{% endif %}>
+
+<article>
+
+{% if page.link %}
+<hgroup>
+	<h1><a target=_blank href="{{ page.link | escape }}">{{ page.title }}</a>&nbsp;→</h1>
+</hgroup>
+{% elsif page.mainindex %}
+{% else %}
+<hgroup>
+	<h1>{{ page.title }} {% if page.titleen %}<span style="opacity: 0.3;"> {{ page.titleen }}</span>{% endif %}</h1>
+</hgroup>
+{% endif %}
+
+{{ content }}
+
+</article>
+
+</section>

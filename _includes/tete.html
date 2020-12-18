@@ -1,0 +1,20 @@
+<nav id="ntitle">
+<div>
+  <a href="/"><h1>{{ site.maintitle }}</h1></a>
+  <div class="desc">{{ site.maindesc }}</div>
+  
+  <a onclick="document.getElementById('ntitle').classList.toggle('expanded')" class="button menumarker" style="width:35px;padding:0"><span class="oi" data-glyph="menu"></span></a>
+  <a class="button rss" title="RSS" href="/flux.xml"><span class="oi" data-glyph="rss"></span></a>
+  
+  <div class="nlinks">
+    <div>
+	{% for link in site.menus %}
+	    <a href="{{ link.url }}">
+		<span class="oi" data-glyph="{{ link.openiconic }}"></span>
+		<span>{{ link.text }}<span>
+	    </a>
+	{% endfor %}
+    </div>
+  </div>
+</div>
+</nav>

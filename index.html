@@ -1,6 +1,7 @@
-<!DOCTYPE html>
-<html>
-<body>
+---
+layout: default
+role: home
+---
 
 <center>
 	<h1>Interview Questions for Computer Science Faculty Jobs</h1>
@@ -20,7 +21,7 @@ var startTime = new Date().getTime();
 var lastIdx;
 
 var yourInstitution = 'ETH Zurich';
-var yourDepartment = 'Department of Computer Science'
+var yourDepartment = 'Department of Computer Science';
 
 var questions = `
 	// https://career-advice.jobs.ac.uk/jobseeking-and-interview-tips/top-5-academic-interview-questions-and-answers/
@@ -95,8 +96,8 @@ var questions = `
 	`.split('\n');
 questions = questions.map(s => s.trim()).filter(s => s != '' && !s.startsWith('//')); // remove the first empty element
 
-console.log(questions)
-console.assert(questions.length > 1)
+console.log(questions);
+console.assert(questions.length > 1);
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
@@ -133,14 +134,7 @@ Questions taken and adapted from:
 	<li><a href="https://csguides.github.io/grad-job-guide/interviewing/">Computer Science Graduate Job and Interview Guide</a></li>
 </ul>
 
-<footer>
-	<p>
-		Contributors:
-		<ul>
-			<li><a href="https://www.manuelrigger.at/">Manuel Rigger</a></li>
-		</ul>
-	</p>
-</footer>
 
-</body>
-</html>
+{% assign page = site.posts.first %}
+{% assign content = page.content %}
+{% include postdetails.html %}

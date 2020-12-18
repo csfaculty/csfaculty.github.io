@@ -1,0 +1,52 @@
+## Configuration file for Jekyll
+## & Schrift template
+
+#
+# Jekyll configuration
+# --------------------
+
+# Global
+url: https://csfaculty.github.io/index.html
+
+# Build options
+markdown:    kramdown
+permalink:   date
+
+
+
+#
+# Schrift template configuration
+# ------------------------------
+
+# Enter below your name or pseudo & a short description
+#    | These don't appear on the website. They are used to set the <META>s
+author: Manuel Rigger
+description: Interview Questions for Computer Science Faculty Job Interviews
+title: Interview Questions for Computer Science Faculty Jobs  # Appears in the window title of the browser. Stands alone on the homepage, sits beside the post title on post pages.
+
+# Enter below the headtitle of your weblog/website
+#    | It appears on the main navigation bar. You can use <span></span> to nicely fade out some part of it
+maintitle: Interview Questions <span>for Computer Science Faculty Jobs</span>
+
+# Enter below a short description that will sit next to your head title. (keep it short)
+#    | {optional}
+maindesc: maintained by Manuel Rigger
+
+# Enter below the items of your main menu
+#    | Keep it a small amount. It is designed for a small menu.
+#    | Schrit comes with the openiconic icon pack. Check out https://useiconic.com/open to select an icon for each menu item.
+menus:
+#- text: Archive
+#  url: /archive
+#  openiconic: list
+#- text: Some Page
+#  url: /2015/01/25/lorem-ipsum.html
+#  openiconic: list-rich
+- text: About
+  url: /about.html
+  openiconic: info
+
+# Enter an invitation message
+#    | It lies right beneath every post to invite your readers to react and comment
+#    | {optional}
+invitationmsg: Please reach out to <a href=mailto:manuel.rigger@inf.ethz.ch>manuel.rigger@inf.ethz.ch</a> for any feedback.

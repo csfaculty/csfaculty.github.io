@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="FR-fr">
+  <head>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="./flux.xml" />
+
+    <meta charset="UTF-8">
+    <title>
+    {% if page.title %}
+	{{ page.title | replace:'&nbsp;',' ' | escape }} - {{ site.title }}
+    {% else %}
+	{{ site.title }}
+    {% endif %}
+    </title>
+    
+    {% if page.description %}
+    <meta name="description" content="{{ page.description | escape }}">
+    {% else %}
+    <meta name="description" content="{{ site.description | escape }}">
+    {% endif %}
+    
+    <meta name="author" content="{{ site.author }}">
+    <meta content='initial-scale=1.0' name='viewport'>
+    
+    {% if page.styles %}
+    <style type="text/css" media="screen">{{ page.styles }}</style>
+    {% endif %}
+  </head>
+  
+  <body {% if page.bodyclass %} class="{{ page.bodyclass }}"{% endif %}>
+
+    {% include tete.html %}
+    
+    {{ content }}
+
+  </body>
+</html>
