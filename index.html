@@ -143,11 +143,16 @@ function getRandomInt(max) {
 }
 
 function nextQuestion() {
+	if (questions.length == 0) {
+		alert("Out of questions!");
+		return;
+	}
 	do {
 		idx = getRandomInt(questions.length);
 	} while (idx == lastIdx);
 	lastIdx = idx
 	document.getElementById("question").innerHTML = questions[idx].replace('INSTITUTION', yourInstitution).replace('DEPARTMENT', yourDepartment);
+	questions = questions.filter(s => s != questions[idx])
 	startTime = new Date().getTime();
 }
 
