@@ -94,6 +94,13 @@ var questions = `
 	What sort of research will you be doing in the future?
 	// Where do you get most of your funding? NSF? Other government agencies? Corporate funding?
 	Where do you get most of your funding?
+	
+	// https://shomir.net/tt_job_guide.html
+	Why are you interested in joining INSTITUTION?
+	Why are you interested in joining DEPARTMENT?
+	Whom at the university would you collaborate with on research?
+	What are your teaching interests, or what is your teaching philosophy?
+	What questions do you have for the search committee?
 
 	`.split('\n');
 questions = questions.map(s => s.trim()).filter(s => s != '' && !s.startsWith('//')); // remove the first empty element
