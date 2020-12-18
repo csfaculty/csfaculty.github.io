@@ -42,9 +42,9 @@ menus:
 #- text: Some Page
 #  url: /2015/01/25/lorem-ipsum.html
 #  openiconic: list-rich
-- text: About
-  url: /about.html
-  openiconic: info
+#- text: About
+#  url: /about.html
+#  openiconic: info
 
 # Enter an invitation message
 #    | It lies right beneath every post to invite your readers to react and comment
