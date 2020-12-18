@@ -5,14 +5,16 @@ role: home
 
 <center>
 	<h1>Interview Questions for Computer Science Faculty Jobs</h1>
-	<p>Assume you are applying for:</p>
-	Institution:
-	<input type="text" id="institution" value="ETH Zurich" oninput="updateInstitution()">
-	Department:
-	<input type="text" id="department" value="Department of Computer Science">
 	<p id="question" style="font-size: 35px;"></p>
 	<button onclick="nextQuestion()">Next Question</button>
 	<p id="timer"  style="font-size: 35px;"></p>
+	
+	<h2>Applying for:</h2>
+	Institution:
+	<input type="text" id="institution" value="ETH Zurich" oninput="updateInstitution()">
+	<br />
+	Department:
+	<input type="text" id="department" value="Department of Computer Science">
 </center>
 
 <script>
@@ -123,10 +125,12 @@ function updateInstitution() {
   yourInstitution =  document.getElementById("institution").value
 }
 
+nextQuestion();
 
 </script>
 
-Questions taken and adapted from:
+<h2>Acknowledgements and Further Information</h2>
+Many of the questions have been adopted from existing faculty search guidelines, which are listed below:
 <ul>
 	<li><a href="https://career-advice.jobs.ac.uk/jobseeking-and-interview-tips/top-5-academic-interview-questions-and-answers/">Top 5 Academic Interview Answers by jobs.ac.uk</a></li>
 	<li><a href="http://web.eecs.utk.edu/~azh/resources/facultyinterviewquestions.html">Faculty interview questions I asked and got asked by Austin Z. Henley</a></li>
