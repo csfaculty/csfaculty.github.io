@@ -132,6 +132,13 @@ var questions = `
 	Could you tell us about your long-range plans and commitment to this department?
 	Do you have children? (while this question is illegal in many countries, it might still be asked in one way or the other)
 	
+	// https://provost.columbia.edu/sites/default/files/content/BestPracticesFacultySearchHiring.pdf (see page 25)
+	What do you see as the most challenging aspects of an increasingly diverse academic community? What have you done, formally or informally, to meet such challenges? 
+	How do you view diversity course requirements for students? 
+	How have you worked with students and others to foster the creation of an environment that's receptive to diversity in the classroom, in the curriculum, and in the department?
+	How have you mentored, supported, or encouraged students on your campus? What about underrepresented minority students, women, or international students?
+	In what ways have you integrated diversity as part of your professional development? 
+	
 	`.split('\n');
 questions = questions.map(s => s.trim()).filter(s => s != '' && !s.startsWith('//')); // remove the first empty element
 
