@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<center>
+	<h1>Interview Questions for Computer Science Faculty Jobs</h1>
+	<p>Assume you are applying for:</p>
+	Institution:
+	<input type="text" id="institution" value="ETH Zurich" oninput="updateInstitution()">
+	Department:
+	<input type="text" id="department" value="Department of Computer Science">
+	<p id="question" style="font-size: 35px;"></p>
+	<button onclick="nextQuestion()">Next Question</button>
+	<p id="timer"  style="font-size: 35px;"></p>
+</center>
+
+<script>
+
+var startTime = new Date().getTime();
+var lastIdx;
+
+var yourInstitution = 'ETH Zurich';
+var yourDepartment = 'Department of Computer Science'
+
+var questions = `
+	// https://career-advice.jobs.ac.uk/jobseeking-and-interview-tips/top-5-academic-interview-questions-and-answers/
+	Why do you want to work at INSTITUTION?
+	What makes you different from the other candidates?
+	What are your plans for research?
+	What are your plans for research in the next year?
+	What are your plans for research in the next five years?
+	What are your plans for research in the next ten years?
+	What courses could you offer to teach?
+	How would you contribute to the administration of the department?
+	
+	What is your teaching experience?
+	How do you mentor your students?
+	
+	// https://web.eecs.utk.edu/~azh/blog/facultyinterviewquestions.html
+	Tell us about your research.
+	What are the contributions of your work?
+	Can you explain the theory behind your work?
+	How does your research relate to X? (assume that you do not know what X is)
+	How is your work different than other's in your field?
+	How will you distinguish yourself from your advisor?
+	What are your 1st year goals as faculty?
+	What are your 5 year goals as faculty?
+	What are your funding plans?
+	// TODO: include region-specific question Which specific NSF programs will you submit to?
+	// What other funding agencies can you submit to besides NSF?
+	// What will be the topic of your first grant proposal?
+	// When will you first apply for the CAREER Award?
+	Who will you write your first grant proposal with?
+	Do you have any grant writing experience?
+	What do you want your research group/lab to be like? Number of students?
+	What is your biggest achievement?
+	What is your "home" conference?
+	Who will you collaborate with externally?
+	Who would you collaborate with within the DEPARTMENT? What other departments could you work with?
+	What will your strategy be in order to publish top-tier papers consistently?
+	What would you like to teach?
+	// Can you teach X? (sometimes X was far outside my area)
+	What resources do you need for your lab?
+	Why do you want to work at INSTITUTION?
+	What are you looking for in a department?
+	What other schools are you interviewing with?
+	// What is your timeline [for accepting an offer]?
+	Why academia? Why not industry?
+	
+	What do you intend to do next? What is your research plan?
+	What will you be doing in 10 years?
+	Give me a summary of your work (in 30 seconds).
+	Give me a summary of your work (in 2 minutes).
+	Give me a summary of your work (in 5 minutes).
+	Who do you consider the best people in your field?
+	What is your biggest weakness as a teacher?
+	How can your results help me in my own research (assume a faculty from INSTITUTION)?
+	What are you looking for in a school? Why did you apply here?
+	What is your methodology for problem-solving?
+	What are other people at your current institution doing?
+	What is the most interesting part of computer science besides your own area?
+	What are your hobbies or interests?
+
+	`.split('\n');
+questions = questions.map(s => s.trim()).filter(s => s != '' && !s.startsWith('//')); // remove the first empty element
+
+console.log(questions)
+console.assert(questions.length > 1)
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
+function nextQuestion() {
+	do {
+		idx = getRandomInt(questions.length);
+	} while (idx == lastIdx);
+	lastIdx = idx
+	document.getElementById("question").innerHTML = questions[idx].replace('INSTITUTION', yourInstitution).replace('DEPARTMENT', yourDepartment);
+	startTime = new Date().getTime();
+}
+
+setInterval(updateTimer, 1);
+function updateTimer() {
+  endTime = new Date().getTime()
+  duration = new Date(endTime - startTime)
+  document.getElementById("timer").innerHTML = duration.toISOString().substr(11, 8);
+}
+
+function updateInstitution() {
+  yourInstitution =  document.getElementById("institution").value
+}
+
+
+</script>
+
+Questions taken and adapted from:
+<ul>
+	<li><a href="https://career-advice.jobs.ac.uk/jobseeking-and-interview-tips/top-5-academic-interview-questions-and-answers/">Top 5 Academic Interview Answers by jobs.ac.uk</a></li>
+	<li><a href="http://web.eecs.utk.edu/~azh/resources/facultyinterviewquestions.html">Faculty interview questions I asked and got asked by Austin Z. Henley</a></li>
+	<li><a href="https://homes.cs.washington.edu/~mernst/advice/academic-job.html">Getting an academic job by Michael Ernst</a></li>
+</ul>
+
+<footer>
+	<p>
+		Contributors:
+		<ul>
+			<li><a href="https://www.manuelrigger.at/">Manuel Rigger</a></li>
+		</ul>
+	</p>
+</footer>
+
+</body>
+</html>
