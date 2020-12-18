@@ -80,6 +80,17 @@ var questions = `
 	What are other people at your current institution doing?
 	What is the most interesting part of computer science besides your own area?
 	What are your hobbies or interests?
+	
+	// https://csguides.github.io/grad-job-guide/interviewing/
+	Tell me how your interests are aligned with some of the faculty here. Who could you work with?
+	Are you married? Do you have a two-body problem? (while this question seems to be illegal in many countries, it might still be asked in one way or the other)
+	// What will your CAREER award be about?
+	What will your first student’s Ph.D. topic be (in general)? How many students do you plan to have?
+	What courses would you be willing to teach? Are you interested in creating new courses?
+	How will you divide your time between research, teaching and service?
+	What sort of research will you be doing in the future?
+	// Where do you get most of your funding? NSF? Other government agencies? Corporate funding?
+	Where do you get most of your funding?
 
 	`.split('\n');
 questions = questions.map(s => s.trim()).filter(s => s != '' && !s.startsWith('//')); // remove the first empty element
@@ -119,6 +130,7 @@ Questions taken and adapted from:
 	<li><a href="https://career-advice.jobs.ac.uk/jobseeking-and-interview-tips/top-5-academic-interview-questions-and-answers/">Top 5 Academic Interview Answers by jobs.ac.uk</a></li>
 	<li><a href="http://web.eecs.utk.edu/~azh/resources/facultyinterviewquestions.html">Faculty interview questions I asked and got asked by Austin Z. Henley</a></li>
 	<li><a href="https://homes.cs.washington.edu/~mernst/advice/academic-job.html">Getting an academic job by Michael Ernst</a></li>
+	<li><a href="https://csguides.github.io/grad-job-guide/interviewing/">Computer Science Graduate Job and Interview Guide</a></li>
 </ul>
 
 <footer>
