@@ -39,11 +39,11 @@ menus:
 #- text: Archive
 #  url: /archive
 #  openiconic: list
-#- text: Some Page
-#  url: /2015/01/25/lorem-ipsum.html
+- text: Acknowledgements
+  url: 2020/12/18/ack.html
 #  openiconic: list-rich
-#- text: About
-#  url: /about.html
+- text: About
+  url: /about.html
 #  openiconic: info
 
 # Enter an invitation message

@@ -9,7 +9,7 @@ role: home
 	<button onclick="nextQuestion()">Next Question</button>
 	<p id="timer"  style="font-size: 35px;"></p>
 	
-	<h2>Applying for:</h2>
+	<h2>Institution You Are Applying For</h2>
 	Institution:
 	<input type="text" id="institution" value="ETH Zurich" oninput="updateInstitution()">
 	<br />
@@ -129,16 +129,14 @@ nextQuestion();
 
 </script>
 
-<h2>Acknowledgements and Further Information</h2>
-Many of the questions have been adopted from existing faculty search guidelines, which are listed below:
-<ul>
-	<li><a href="https://career-advice.jobs.ac.uk/jobseeking-and-interview-tips/top-5-academic-interview-questions-and-answers/">Top 5 Academic Interview Answers by jobs.ac.uk</a></li>
-	<li><a href="http://web.eecs.utk.edu/~azh/resources/facultyinterviewquestions.html">Faculty interview questions I asked and got asked by Austin Z. Henley</a></li>
-	<li><a href="https://homes.cs.washington.edu/~mernst/advice/academic-job.html">Getting an academic job by Michael Ernst</a></li>
-	<li><a href="https://csguides.github.io/grad-job-guide/interviewing/">Computer Science Graduate Job and Interview Guide</a></li>
-</ul>
 
+{% unless page.comments == false %}
+      {% if site.invitationmsg %}
+      <div class="invitation">
+	  <div>
+	      <span class="oi" data-glyph="chat" style="padding-right: 12px;"></span> {{ site.invitationmsg }}
+	  </div>
+      </div>
+      {% endif %}
+{% endunless %}
 
-{% assign page = site.posts.first %}
-{% assign content = page.content %}
-{% include postdetails.html %}
