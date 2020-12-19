@@ -302,6 +302,8 @@ function nextQuestion() {
 	if (question in notes) {
 		note = notes[question];
 		document.getElementById("note").innerHTML = note;
+	} else {
+		document.getElementById("note").innerHTML = "";
 	}
 	document.getElementById("question").innerHTML = question;
 	document.getElementById("question_source").innerHTML = sources[questions[idx]];
