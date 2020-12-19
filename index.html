@@ -5,8 +5,12 @@ role: home
 
 <center>
 	<h1>Interview Questions for Computer Science Faculty Jobs</h1>
-	<p id="question" style="font-size: 30px;border: 2px solid green;width:90%;min-height:200px; display: flex;justify-content: center;align-items: center;">
-	</p>
+	
+	<div style="border: 2px solid green;width:90%;min-height:200px; display: flex;justify-content: center;align-items: center;">
+		<p id="question" style="font-size: 30px;width: 100%"></p>
+	</div>
+	
+	 <div id="note" style="font-style: italic;color: rgba(0, 0, 0, 0.8);font-size:25px"></div>
 	 <div style="padding:30px 25px;">Question adopted/adapted from: <div id="question_source"></div></div>
 
 
@@ -104,7 +108,10 @@ var questionsJson = [
 		"source_name" : "CS Grad Job and Interview Guide",
 		"questions" : [
 			"Tell me how your interests are aligned with some of the faculty here. Who could you work with?",
-			"Are you married? Do you have a two-body problem? (while this question is illegal in many countries, it might still be asked in one way or the other)",
+			{
+				"question" : "Are you married? Do you have a two-body problem?",
+				"note" : "While this question is illegal in many countries, it might still be asked in one way or the other"
+			},
 			// What will your CAREER award be about?
 			"What will your first student's Ph.D. topic be (in general)? How many students do you plan to have?",
 			"What courses would you be willing to teach? Are you interested in creating new courses?",
@@ -138,8 +145,14 @@ var questionsJson = [
 			"What will be the first thesis that you supervise?",
 			"How do you evaluate research in your area?",
 			"Isn't your field a dead field that hasn't produced anything worthwhile in the past 20 years?",
-			"Where else do you have interviews? (note that this question might be illegal)",
-			"Do you have any offers? (note that this question might be illegal)"
+			{
+				"question" : "Where else do you have interviews?",
+				"note" : "Note that this question might be illegal."
+			},
+			{
+				"question" : "Do you have any offers?",
+				"note" : "Note that this question might be illegal."
+			}
 		]
 	},	
 	{
@@ -162,7 +175,10 @@ var questionsJson = [
 			"How will you fit in as a department member and what kind of contribution will you make to our community?",
 			// Apart from the obvious financial reasons, why would you like to join the Faculty of Y at University X?
 			"Could you tell us about your long-range plans and commitment to this department?",
-			"Do you have children? (while this question is illegal in many countries, it might still be asked in one way or the other)"
+			{
+				"question" : "Do you have children?",
+				"note" : "While this question is illegal in many countries, it might still be asked in one way or the other"
+			}
 		]
 	},
 	{
@@ -227,7 +243,10 @@ var questionsJson = [
 		"questions" : [
 			"I can't/didn't make your talk; can you give me a quick overview of your research?",
 			"Do you have a teaching preference?",
-			"Where else are you interviewing? (note that this question might be illegal)",
+			{
+				"question" : "Where else are you interviewing?",
+				"note" : "This question might be illegal in your country."
+			},
 			"Where do you see your research going?",
 			"Say something to prove to me that your research/field is going to matter.",
 			"Do you have any more questions?",
@@ -240,14 +259,26 @@ var questionsJson = [
 
 var questions = []
 var sources = {}
+var notes = {}
 
 for (i in questionsJson) {
 	source = questionsJson[i]
 	sourceString = '<a href="' + source['source_url'] + '">' + source['source_name'] +'</a>'
 	for (j in source.questions) {
-		question = source.questions[j]
+		if (typeof source.questions[j] == 'string' ) {
+			// simple question string
+			question = source.questions[j];
+		} else {
+			// more complex object
+			questionObject = source.questions[j];
+			question = questionObject['question'];
+			if ('note' in questionObject) {
+				notes[question] = questionObject['note'];
+			}
+		}
 		questions.push(question);
 		sources[question] = sourceString;
+
 	}
 }
 console.log(questions)
@@ -267,7 +298,12 @@ function nextQuestion() {
 	}
 	idx = getRandomInt(questions.length);
 	lastIdx = idx
-	document.getElementById("question").innerHTML = questions[idx].replace('INSTITUTION', yourInstitution).replace('DEPARTMENT', yourDepartment);
+	question = questions[idx].replace('INSTITUTION', yourInstitution).replace('DEPARTMENT', yourDepartment);
+	if (question in notes) {
+		note = notes[question];
+		document.getElementById("note").innerHTML = note;
+	}
+	document.getElementById("question").innerHTML = question;
 	document.getElementById("question_source").innerHTML = sources[questions[idx]];
 	questions = questions.filter(s => s != questions[idx]);
 	startTime = new Date().getTime();
