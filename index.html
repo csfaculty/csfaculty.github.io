@@ -17,13 +17,6 @@ role: home
 	<button onclick="nextQuestion()">Next Question</button>
 	<p id="timer"  style="font-size: 35px;"></p>
 	
-	<h2>Institution You Are Applying For</h2>
-	Institution:
-	<input type="text" id="institution" value="ETH Zurich" oninput="updateInstitution()" size="30">
-	<br />
-	Department:
-	<input type="text" id="department" value="Department of Computer Science" size="30">
-	<div style="font-style: italic;color: rgba(0, 0, 0, 0.8);padding:30px 25px;">This information will not be sent to the server.</div>
 </center>
 
 <script>
@@ -31,15 +24,12 @@ role: home
 var startTime = new Date().getTime();
 var lastIdx;
 
-var yourInstitution = 'ETH Zurich';
-var yourDepartment = 'Department of Computer Science';
-
 var questionsJson = [
 	{
 		"source_url" : "https://career-advice.jobs.ac.uk/jobseeking-and-interview-tips/top-5-academic-interview-questions-and-answers/",
 		"source_name" : "Top 5 Academic Interview Answers by jobs.ac.uk",
 		"questions" : [
-			"Why do you want to work at INSTITUTION?",
+			"Why do you want to work here?",
 			"What makes you different from the other candidates?",
 			"What are your plans for research?",
 			"What are your plans for research in the next year?",
@@ -72,12 +62,12 @@ var questionsJson = [
 			"What is your biggest achievement?",
 			"What is your \"home\" conference?",
 			"Who will you collaborate with externally?",
-			"Who would you collaborate with within the DEPARTMENT? What other departments could you work with?",
+			"Who would you collaborate with within the department? What other departments could you work with?",
 			"What will your strategy be in order to publish top-tier papers consistently?",
 			"What would you like to teach?",
 			// Can you teach X? (sometimes X was far outside my area),
 			"What resources do you need for your lab?",
-			"Why do you want to work at INSTITUTION?",
+			"Why do you want to work at this institution?",
 			"What are you looking for in a department?",
 			"What other schools are you interviewing with?",
 			"What is your timeline [for accepting an offer]?",
@@ -95,7 +85,7 @@ var questionsJson = [
 			"Give me a summary of your work (in 5 minutes).",
 			"Who do you consider the best people in your field?",
 			"What is your biggest weakness as a teacher?",
-			"How can your results help me in my own research (assume a faculty from INSTITUTION)?",
+			"How can your results help me in my own research?",
 			"What are you looking for in a school? Why did you apply here?",
 			"What is your methodology for problem-solving?",
 			"What are other people at your current institution doing?",
@@ -125,8 +115,8 @@ var questionsJson = [
 		"source_url" : "https://shomir.net/tt_job_guide.html",
 		"source_name" : "\"Guide for the Tenure-Track Job Market in Computer/Information Sciences\" by Shomir Wilson",
 		"questions" : [
-			"Why are you interested in joining INSTITUTION?",
-			"Why are you interested in joining DEPARTMENT?",
+			"Why are you interested in joining this institution",
+			"Why are you interested in joining this department?",
 			"Whom at the university would you collaborate with on research?",
 			"What are your teaching interests, or what is your teaching philosophy?",
 			"What questions do you have for the search committee?"
@@ -170,8 +160,7 @@ var questionsJson = [
 			"How would you evaluate student learning?",
 			"How do you bring diversity into your day-today teaching?",
 			"You've seen our mission statement. How would you see yourself contributing to our mission and campus atmosphere?",
-			"What is your perception of the responsibilities of a full-time faculty member in INSTITUTION?",
-			"What is your perception of the responsibilities of a full-time faculty member in DEPARTMENT?",
+			"What is your perception of the responsibilities of a full-time faculty member in this institution/department?",
 			"How will you fit in as a department member and what kind of contribution will you make to our community?",
 			// Apart from the obvious financial reasons, why would you like to join the Faculty of Y at University X?
 			"Could you tell us about your long-range plans and commitment to this department?",
@@ -298,7 +287,7 @@ function nextQuestion() {
 	}
 	idx = getRandomInt(questions.length);
 	lastIdx = idx
-	question = questions[idx].replace('INSTITUTION', yourInstitution).replace('DEPARTMENT', yourDepartment);
+	question = questions[idx];
 	if (question in notes) {
 		note = notes[question];
 		document.getElementById("note").innerHTML = note;
@@ -316,10 +305,6 @@ function updateTimer() {
   endTime = new Date().getTime()
   duration = new Date(endTime - startTime)
   document.getElementById("timer").innerHTML = duration.toISOString().substr(11, 8);
-}
-
-function updateInstitution() {
-  yourInstitution =  document.getElementById("institution").value
 }
 
 nextQuestion();
