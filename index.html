@@ -6,7 +6,7 @@ role: home
 <center>
 	<h1>Interview Questions for Computer Science Faculty Jobs</h1>
 	
-	<div style="border: 2px solid green;width:90%;min-height:200px; display: flex;justify-content: center;align-items: space-between;flex-direction:column;align-content:space-between">
+	<div style="border: 2px solid green;width:90%;min-height:200px; display: flex;justify-content: center;align-items: space-between;flex-direction:column;align-content:space-between" id ="questionborder">
 		<div id="question" style="font-size: 30px;"></div>
 	</div>
 	<br />
@@ -592,6 +592,13 @@ function nextQuestion() {
 	document.getElementById("question").innerHTML = question;
 	document.getElementById("question_source").innerHTML = sources[currentQuestions[idx]];
 	document.getElementById("categories").innerHTML = categories[question].join(", ");
+	var borderColor;
+	if (categories[question].includes("illegal")) {
+		borderColor = 'red';
+	} else {
+		borderColor = 'green';
+	}
+	document.getElementById("questionborder").style.borderColor = borderColor;
 
 	questions = questions.filter(s => s != currentQuestions[idx]);
 	startTime = new Date().getTime();
