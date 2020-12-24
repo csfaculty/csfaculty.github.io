@@ -30,6 +30,7 @@ role: home
 		<input type="checkbox" id="research" value="1" onclick="checkboxToggle('research')" Checked>Research
 		<input type="checkbox" id="service" value="1" onclick="checkboxToggle('service')" Checked>Service
 		<input type="checkbox" id="teaching" value="1" onclick="checkboxToggle('teaching')" Checked>Teaching
+		<input type="checkbox" id="us-specific" value="1" onclick="checkboxToggle('us-specific')" Checked>US-specific
 	</div>
 	
 </center>
@@ -110,11 +111,19 @@ var questionsJson = [
 				"categories" : ["general"]
 			}, {
 				"question" : "What are your funding plans?",
-			// TODO: include region-specific question Which specific NSF programs will you submit to?
-			// What other funding agencies can you submit to besides NSF?
-			// What will be the topic of your first grant proposal?
-			// When will you first apply for the CAREER Award?
 				"categories" : ["funding"]
+			}, {
+				"question" : "What other funding agencies can you submit to besides NSF?",
+				"categories" : ["funding", "us-specific"]
+			}, {
+				"question" : "What will be the topic of your first grant proposal?",
+				"categories" : ["funding"]
+			}, {
+				"question" : "Which specific NSF programs will you submit to?",
+				"categories" : ["funding", "us-specific"]
+			}, {
+				"question" : "When will you first apply for the CAREER Award?",
+				"categories" : ["funding", "us-specific"]
 			}, {
 				"question" : "Who will you write your first grant proposal with?",
 				"categories" : ["funding"]
@@ -224,7 +233,10 @@ var questionsJson = [
 				"note" : "While this question is illegal in many countries, it might still be asked in one way or the other",
 				"categories" : ["general", "illegal"]
 			},
-			// What will your CAREER award be about?
+			{
+				"question" : "What will your CAREER award be about?",
+				"categories" : ["funding", "us-specific"]
+			},
 			{
 				"question" : "What will your first student's Ph.D. topic be (in general)? How many students do you plan to have?",
 				"categories" : ["research", "mentoring"]
@@ -236,8 +248,10 @@ var questionsJson = [
 				"categories" : ["general", "research", "teaching", "service"]
 			}, {
 				"question" : "What sort of research will you be doing in the future?",
-			// Where do you get most of your funding? NSF? Other government agencies? Corporate funding?
 				"categories" : ["research"]
+			}, {
+				"question" : "Where do you get most of your funding? NSF? Other government agencies? Corporate funding?",
+				"categories" : ["funding", "us-specific"]
 			}, {
 				"question" : "Where do you get most of your funding?",
 				"categories" : ["funding"]
