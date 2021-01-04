@@ -27,6 +27,7 @@ role: home
 		<input type="checkbox" id="funding" value="1" onclick="checkboxToggle('funding')" Checked>Funding
 		<input type="checkbox" id="general" value="1" onclick="checkboxToggle('general')" Checked>General
 		<input type="checkbox" id="illegal" value="1" onclick="checkboxToggle('illegal')" Checked>Illegal
+		<input type="checkbox" id="institution" value="1" onclick="checkboxToggle('institution')" Checked>Institution-specific
 		<input type="checkbox" id="mentoring" value="1" onclick="checkboxToggle('mentoring')" Checked>Mentoring
 		<input type="checkbox" id="provocative" value="1" onclick="checkboxToggle('provocative')" Checked>Provocative
 		<input type="checkbox" id="research" value="1" onclick="checkboxToggle('research')" Checked>Research
@@ -50,7 +51,7 @@ var questionsJson = [
 		"questions" : [
 			{
 				"question" :"Why do you want to work here?",
-				"categories" : ["general"]
+				"categories" : ["general", "institution"]
 			}
 			,
 			{
@@ -79,7 +80,7 @@ var questionsJson = [
 			},
 			{
 				"question" : "How would you contribute to the administration of the department?",
-				"categories" : ["service"]
+				"categories" : ["service", "institution"]
 			}
 		]
 	},
@@ -128,7 +129,7 @@ var questionsJson = [
 				"categories" : ["funding", "us-specific"]
 			}, {
 				"question" : "Who will you write your first grant proposal with?",
-				"categories" : ["funding"]
+				"categories" : ["funding", "institution"]
 			}, {
 				"question" : "Do you have any grant writing experience?",
 				"categories" : ["funding"]
@@ -146,7 +147,7 @@ var questionsJson = [
 				"categories" : ["general"]
 			}, {
 				"question" : "Who would you collaborate with within the department? What other departments could you work with?",
-				"categories" : ["general"]
+				"categories" : ["general", "institution"]
 			}, {
 				"question" : "What will your strategy be in order to publish top-tier papers consistently?",
 				"categories" : ["research"]
@@ -159,7 +160,7 @@ var questionsJson = [
 				"categories" : ["general"]
 			}, {
 				"question" : "Why do you want to work at this institution?",
-				"categories" : ["general"]
+				"categories" : ["general", "institution"]
 			}, {
 				"question" : "What are you looking for in a department?",
 				"categories" : ["general"]
@@ -206,7 +207,7 @@ var questionsJson = [
 				"categories" : ["general", "research"]
 			}, {
 				"question" : "What are you looking for in a school? Why did you apply here?",
-				"categories" : ["general"]
+				"categories" : ["general", "institution"]
 			}, {
 				"question" : "What is your methodology for problem-solving?",
 				"categories" : ["research"]
@@ -228,7 +229,7 @@ var questionsJson = [
 		"questions" : [
 			{
 				"question" : "Tell me how your interests are aligned with some of the faculty here. Who could you work with?",
-				"categories" : ["general"]
+				"categories" : ["general", "institution"]
 			},
 			{
 				"question" : "Are you married? Do you have a two-body problem?",
@@ -266,13 +267,13 @@ var questionsJson = [
 		"questions" : [
 			{
 				"question" : "Why are you interested in joining this institution",
-				"categories" : ["general"]
+				"categories" : ["general", "institution"]
 			}, {
 				"question" : "Why are you interested in joining this department?",
-				"categories" : ["general"]
+				"categories" : ["general", "institution"]
 			}, {
 				"question" : "Whom at the university would you collaborate with on research?",
-				"categories" : ["general"]
+				"categories" : ["general", "institution"]
 			}, {
 				"question" : "What are your teaching interests, or what is your teaching philosophy?",
 				"categories" : ["teaching"]
@@ -347,7 +348,7 @@ var questionsJson = [
 				"categories" : ["teaching"]
 			}, {
 				"question" : "What classes could you teach in our program?",
-				"categories" : ["teaching"]
+				"categories" : ["teaching", "institution"]
 			}, {
 				"question" : "How would you plan a course in ___? What texts would you use? What topics would you cover?",
 				"categories" : ["teaching"]
@@ -359,17 +360,17 @@ var questionsJson = [
 				"categories" : ["diversity", "teaching"]
 			}, {
 				"question" : "You've seen our mission statement. How would you see yourself contributing to our mission and campus atmosphere?",
-				"categories" : ["general"]
+				"categories" : ["general", "institution"]
 			}, {
 				"question" : "What is your perception of the responsibilities of a full-time faculty member in this institution/department?",
-				"categories" : ["general"]
+				"categories" : ["general", "institution"]
 			}, {
 				"question" : "How will you fit in as a department member and what kind of contribution will you make to our community?",
 			// Apart from the obvious financial reasons, why would you like to join the Faculty of Y at University X?
-				"categories" : ["general"]
+				"categories" : ["general", "institution"]
 			}, {
 				"question" : "Could you tell us about your long-range plans and commitment to this department?",
-				"categories" : ["general", "service"]
+				"categories" : ["general", "service", "institution"]
 			}, {
 				"question" : "Do you have children?",
 				"note" : "While this question is illegal in many countries, it might still be asked in one way or the other",
@@ -440,7 +441,7 @@ var questionsJson = [
 			}, {
 				"question" : "What research programs within the department will you create or strengthen?",
 			// • What does HCI (Human-Computer Interaction) research mean to you?
-				"categories" : ["research", "service"]
+				"categories" : ["research", "service", "institution"]
 			}, {
 				"question" : "What type of research environment would be your ideal in a department?",
 				"categories" : ["research", "general"]
@@ -552,19 +553,19 @@ var questionsJson = [
 				"categories" : ["general", "research"]
 			}, {
 				"question" : "What would you consider as the weaknesses in our department?",
-				"categories" : ["general"]
+				"categories" : ["general", "institution"]
 			}, {
 				"question" : "Who here would you consider as potential collaborators?",
-				"categories" : ["general"]
+				"categories" : ["general", "institution"]
 			}, {
 				"question" : "Who would you consider as potential mentors in the department?",
-				"categories" : ["general"]
+				"categories" : ["general", "institution"]
 			}, {
 				"question" : "Which of our courses are you qualified to teach?",
-				"categories" : ["teaching"]
+				"categories" : ["teaching", "institution"]
 			}, {
 				"question" : "Which of our courses are you most interested in teaching?",
-				"categories" : ["teaching"]
+				"categories" : ["teaching", "institution"]
 			}, {
 				"question" : "Given that existing technologies and tools will be obsolete in a few years, what should we teach our students?",
 				"categories" : ["teaching"]
