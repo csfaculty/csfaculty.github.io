@@ -17,6 +17,8 @@ role: home
 	 <br />
 	 Categories: <span id="categories"></span>
 	 <div style="padding:30px 25px;">Question adopted/adapted from: <div id="question_source"></div></div>
+	 <div style="padding:30px 25px;">Remaining number of questions: <div id="nr_questions"></div></div>
+
 
 	<div>Include questions about</div>
 	<div id="checkboxes">
@@ -671,10 +673,19 @@ function checkboxToggle(category) {
 	} else {
 		excludedCategories.push(category);
 	}
+	updateNrCurrentQuestions()
 }
 
 function intersect(a, b) {
   return a.filter(Set.prototype.has, new Set(b));
+}
+
+function getFilteredQuestions() {
+	return questions.filter(s => intersect(categories[s], excludedCategories).length == 0);
+}
+
+function updateNrCurrentQuestions() {
+	document.getElementById("nr_questions").innerHTML = getFilteredQuestions().length
 }
 
 function nextQuestion() {
@@ -684,7 +695,8 @@ function nextQuestion() {
 			console.log(questions[i] + ' has no categories!');
 		}
 	}
-	currentQuestions = questions.filter(s => intersect(categories[s], excludedCategories).length == 0);
+	currentQuestions = getFilteredQuestions();
+	updateNrCurrentQuestions()
 	if (currentQuestions.length == 0) {
 		alert("Out of questions!");
 		return;
@@ -707,7 +719,6 @@ function nextQuestion() {
 		borderColor = 'green';
 	}
 	document.getElementById("questionborder").style.borderColor = borderColor;
-
 	questions = questions.filter(s => s != currentQuestions[idx]);
 	startTime = new Date().getTime();
 }
