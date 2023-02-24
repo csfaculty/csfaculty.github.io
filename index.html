@@ -31,6 +31,8 @@ role: home
 		<!-- TODO: create dynamically -->
 		<input type="checkbox" id="diversity" value="1" onclick="checkboxToggle('diversity')" Checked>Diversity
 		<input type="checkbox" id="funding" value="1" onclick="checkboxToggle('funding')" Checked>Funding
+		<input type="checkbox" id="collaboration" value="1" onclick="checkboxToggle('collaboration')"
+			Checked>Collaboration
 		<input type="checkbox" id="general" value="1" onclick="checkboxToggle('general')" Checked>General
 		<input type="checkbox" id="illegal" value="1" onclick="checkboxToggle('illegal')" Checked>Illegal
 		<input type="checkbox" id="institution" value="1" onclick="checkboxToggle('institution')"
@@ -49,7 +51,7 @@ role: home
 
 	var startTime = new Date().getTime();
 	var lastIdx;
-	excludedCategories = [];
+	includedCategories = [];
 
 	var questionsJson = [
 		{
@@ -324,7 +326,7 @@ role: home
 				}, {
 					"question": "Where else do you have interviews?",
 					"note": "Note that this question might be illegal.",
-					"categories": ["general", "illegal	"]
+					"categories": ["general", "illegal"]
 				},
 				{
 					"question": "Do you have any offers?",
@@ -784,6 +786,7 @@ role: home
 				}
 				if ('categories' in questionObject) {
 					categories[question] = questionObject['categories'];
+					includedCategories = includedCategories.concat(questionObject['categories']);
 				}
 			}
 			questions.push(question);
@@ -804,9 +807,9 @@ role: home
 	function checkboxToggle(category) {
 		isChecked = document.getElementById(category).checked;
 		if (isChecked) {
-			excludedCategories = excludedCategories.filter(cat => cat != category);
+			includedCategories.push(category);
 		} else {
-			excludedCategories.push(category);
+			includedCategories = includedCategories.filter(cat => cat != category);
 		}
 		updateNrCurrentQuestions()
 	}
@@ -816,7 +819,7 @@ role: home
 	}
 
 	function getFilteredQuestions() {
-		return questions.filter(s => intersect(categories[s], excludedCategories).length == 0);
+		return questions.filter(s => intersect(categories[s], includedCategories).length != 0);
 	}
 
 	function updateNrCurrentQuestions() {
@@ -824,7 +827,7 @@ role: home
 	}
 
 	function nextQuestion() {
-		console.log(excludedCategories);
+		console.log(includedCategories);
 		for (i = 0; i < questions.length; i++) {
 			if (!categories[questions[i]]) {
 				console.log(questions[i] + ' has no categories!');
