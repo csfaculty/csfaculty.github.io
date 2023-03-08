@@ -5,21 +5,25 @@ role: home
 
 <center>
 	<h1>Interview Questions for Computer Science Faculty Jobs</h1>
-	
-	Note: These are general interview questions that anyone might be asked. In a real interview, one is likely to also/mostly receive questions that directly related to one's own research and background.
-	
-	<div style="border: 2px solid green;width:90%;min-height:200px; display: flex;justify-content: center;align-items: space-between;flex-direction:column;align-content:space-between" id ="questionborder">
+
+	Note: These are general interview questions that anyone might be asked. In a real interview, one is likely to
+	also/mostly receive questions that directly related to one's own research and background.
+
+	<div style="border: 2px solid green;width:90%;min-height:200px; display: flex;justify-content: center;align-items: space-between;flex-direction:column;align-content:space-between"
+		id="questionborder">
 		<div id="question" style="font-size: 30px;"></div>
 	</div>
 	<br />
 	<button onclick="nextQuestion()">Next Question</button>
-	<p id="timer"  style="font-size: 35px;"></p>
-	
-	 <div id="note" style="font-style: italic;color: rgba(0, 0, 0, 0.8);font-size:25px"></div>
-	 <br />
-	 Categories: <span id="categories"></span>
-	 <div style="padding:30px 25px;">Question adopted/adapted from: <div id="question_source"></div></div>
-	 <div style="padding:30px 25px;">Remaining number of questions: <div id="nr_questions"></div></div>
+	<p id="timer" style="font-size: 35px;"></p>
+
+	<div id="note" style="font-style: italic;color: rgba(0, 0, 0, 0.8);font-size:25px"></div>
+	<br />
+	Categories: <span id="categories"></span>
+	<div style="padding:30px 25px;">Question adopted/adapted from: <div id="question_source"></div>
+	</div>
+	<div style="padding:30px 25px;">Remaining number of questions: <div id="nr_questions"></div>
+	</div>
 
 
 	<div>Include questions about</div>
@@ -27,9 +31,12 @@ role: home
 		<!-- TODO: create dynamically -->
 		<input type="checkbox" id="diversity" value="1" onclick="checkboxToggle('diversity')" Checked>Diversity
 		<input type="checkbox" id="funding" value="1" onclick="checkboxToggle('funding')" Checked>Funding
+		<input type="checkbox" id="collaboration" value="1" onclick="checkboxToggle('collaboration')"
+			Checked>Collaboration
 		<input type="checkbox" id="general" value="1" onclick="checkboxToggle('general')" Checked>General
 		<input type="checkbox" id="illegal" value="1" onclick="checkboxToggle('illegal')" Checked>Illegal
-		<input type="checkbox" id="institution" value="1" onclick="checkboxToggle('institution')" Checked>Institution-specific
+		<input type="checkbox" id="institution" value="1" onclick="checkboxToggle('institution')"
+			Checked>Institution-specific
 		<input type="checkbox" id="mentoring" value="1" onclick="checkboxToggle('mentoring')" Checked>Mentoring
 		<input type="checkbox" id="provocative" value="1" onclick="checkboxToggle('provocative')" Checked>Provocative
 		<input type="checkbox" id="research" value="1" onclick="checkboxToggle('research')" Checked>Research
@@ -37,841 +44,841 @@ role: home
 		<input type="checkbox" id="teaching" value="1" onclick="checkboxToggle('teaching')" Checked>Teaching
 		<input type="checkbox" id="us-specific" value="1" onclick="checkboxToggle('us-specific')" Checked>US-specific
 	</div>
-	
+
 </center>
 
 <script>
 
-var startTime = new Date().getTime();
-var lastIdx;
-excludedCategories = [];
+	var startTime = new Date().getTime();
+	var lastIdx;
+	includedCategories = [];
 
-var questionsJson = [
-	{
-		"source_url" : "https://career-advice.jobs.ac.uk/jobseeking-and-interview-tips/top-5-academic-interview-questions-and-answers/",
-		"source_name" : "Top 5 Academic Interview Answers by jobs.ac.uk",
-		"questions" : [
-			{
-				"question" :"Why do you want to work here?",
-				"categories" : ["general", "institution"]
+	var questionsJson = [
+		{
+			"source_url": "https://career-advice.jobs.ac.uk/jobseeking-and-interview-tips/top-5-academic-interview-questions-and-answers/",
+			"source_name": "Top 5 Academic Interview Answers by jobs.ac.uk",
+			"questions": [
+				{
+					"question": "Why do you want to work here?",
+					"categories": ["general", "institution"]
+				}
+				,
+				{
+					"question": "What makes you different from the other candidates?",
+					"categories": ["general"]
+				},
+				{
+					"question": "What are your plans for research?",
+					"categories": ["research"]
+				},
+				{
+					"question": "What are your plans for research in the next year?",
+					"categories": ["research"]
+				},
+				{
+					"question": "What are your plans for research in the next five years?",
+					"categories": ["research"]
+				},
+				{
+					"question": "What are your plans for research in the next ten years?",
+					"categories": ["research"]
+				},
+				{
+					"question": "What courses could you offer to teach?",
+					"categories": ["teaching"]
+				},
+				{
+					"question": "How would you contribute to the administration of the department?",
+					"categories": ["service", "institution"]
+				}
+			]
+		},
+		{
+			"source_url": "https://web.eecs.utk.edu/~azh/blog/facultyinterviewquestions.html",
+			"source_name": "\"Faculty interview questions I asked and got asked\" by Austin Z. Henley",
+			"questions": [
+				{
+					"question": "Tell us about your research.",
+					"categories": ["research"]
+				}, {
+					"question": "What are the contributions of your work?",
+					"categories": ["research"]
+				}, {
+					"question": "Can you explain the theory behind your work?",
+					"categories": ["research"]
+				}, {
+					"question": "How does your research relate to X? (assume that you do not know what X is)",
+					"categories": ["research"]
+				}, {
+					"question": "How is your work different than other's in your field?",
+					"categories": ["research"]
+				}, {
+					"question": "How will you distinguish yourself from your advisor?",
+					"categories": ["general"]
+				}, {
+					"question": "What are your 1st year goals as faculty?",
+					"categories": ["general"]
+				}, {
+					"question": "What are your 5 year goals as faculty?",
+					"categories": ["general"]
+				}, {
+					"question": "What are your funding plans?",
+					"categories": ["funding"]
+				}, {
+					"question": "What other funding agencies can you submit to besides NSF?",
+					"categories": ["funding", "us-specific"]
+				}, {
+					"question": "What will be the topic of your first grant proposal?",
+					"categories": ["funding"]
+				}, {
+					"question": "Which specific NSF programs will you submit to?",
+					"categories": ["funding", "us-specific"]
+				}, {
+					"question": "When will you first apply for the CAREER Award?",
+					"categories": ["funding", "us-specific"]
+				}, {
+					"question": "Who will you write your first grant proposal with?",
+					"categories": ["funding", "institution"]
+				}, {
+					"question": "Do you have any grant writing experience?",
+					"categories": ["funding"]
+				}, {
+					"question": "What do you want your research group/lab to be like? Number of students?",
+					"categories": ["general"]
+				}, {
+					"question": "What is your biggest achievement?",
+					"categories": ["general"]
+				}, {
+					"question": "What is your \"home\" conference?",
+					"categories": ["research"]
+				}, {
+					"question": "Who will you collaborate with externally?",
+					"categories": ["general"]
+				}, {
+					"question": "Who would you collaborate with within the department? What other departments could you work with?",
+					"categories": ["general", "institution"]
+				}, {
+					"question": "What will your strategy be in order to publish top-tier papers consistently?",
+					"categories": ["research"]
+				}, {
+					"question": "What would you like to teach?",
+					// Can you teach X? (sometimes X was far outside my area),
+					"categories": ["teaching"]
+				}, {
+					"question": "What resources do you need for your lab?",
+					"categories": ["general"]
+				}, {
+					"question": "Why do you want to work at this institution?",
+					"categories": ["general", "institution"]
+				}, {
+					"question": "What are you looking for in a department?",
+					"categories": ["general"]
+				}, {
+					"question": "What other schools are you interviewing with?",
+					"categories": ["general", "illegal"],
+					"note": "This question might be illegal in some countries."
+				}, {
+					"question": "What is your timeline [for accepting an offer]?",
+					"categories": ["general"]
+				}, {
+					"question": "Why academia? Why not industry?",
+					"categories": ["general"]
+				}
+			]
+		},
+		{
+			"source_url": "https://homes.cs.washington.edu/~mernst/advice/academic-job.html",
+			"source_name": "\"Getting an academic job\" by Michael Ernst",
+			"questions": [
+				{
+					"question": "What do you intend to do next? What is your research plan?",
+					"categories": ["research"]
+				}, {
+					"question": "What will you be doing in 10 years?",
+					"categories": ["research"]
+				}, {
+					"question": "Give me a summary of your work (in 30 seconds).",
+					"categories": ["research"]
+				}, {
+					"question": "Give me a summary of your work (in 2 minutes).",
+					"categories": ["research"]
+				}, {
+					"question": "Give me a summary of your work (in 5 minutes).",
+					"categories": ["research"]
+				}, {
+					"question": "Who do you consider the best people in your field?",
+					"categories": ["general"]
+				}, {
+					"question": "What is your biggest weakness as a teacher?",
+					"categories": ["teaching"]
+				}, {
+					"question": "How can your results help me in my own research?",
+					"categories": ["general", "research"]
+				}, {
+					"question": "What are you looking for in a school? Why did you apply here?",
+					"categories": ["general", "institution"]
+				}, {
+					"question": "What is your methodology for problem-solving?",
+					"categories": ["research"]
+				}, {
+					"question": "What are other people at your current institution doing?",
+					"categories": ["general"]
+				}, {
+					"question": "What is the most interesting part of computer science besides your own area?",
+					"categories": ["research"]
+				}, {
+					"question": "What are your hobbies or interests?",
+					"categories": ["general"]
+				}
+			]
+		},
+		{
+			"source_url": "https://csguides.github.io/grad-job-guide/interviewing/",
+			"source_name": "CS Grad Job and Interview Guide",
+			"questions": [
+				{
+					"question": "Tell me how your interests are aligned with some of the faculty here. Who could you work with?",
+					"categories": ["general", "institution"]
+				},
+				{
+					"question": "Are you married? Do you have a two-body problem?",
+					"note": "While this question is illegal in many countries, it might still be asked in one way or the other",
+					"categories": ["general", "illegal"]
+				},
+				{
+					"question": "What will your CAREER award be about?",
+					"categories": ["funding", "us-specific"]
+				},
+				{
+					"question": "What will your first student's Ph.D. topic be (in general)? How many students do you plan to have?",
+					"categories": ["research", "mentoring"]
+				}, {
+					"question": "What courses would you be willing to teach? Are you interested in creating new courses?",
+					"categories": ["teaching"]
+				}, {
+					"question": "How will you divide your time between research, teaching and service?",
+					"categories": ["general", "research", "teaching", "service"]
+				}, {
+					"question": "What sort of research will you be doing in the future?",
+					"categories": ["research"]
+				}, {
+					"question": "Where do you get most of your funding? NSF? Other government agencies? Corporate funding?",
+					"categories": ["funding", "us-specific"]
+				}, {
+					"question": "Where do you get most of your funding?",
+					"categories": ["funding"]
+				}
+			]
+		},
+		{
+			"source_url": "https://shomir.net/tt_job_guide.html",
+			"source_name": "\"Guide for the Tenure-Track Job Market in Computer/Information Sciences\" by Shomir Wilson",
+			"questions": [
+				{
+					"question": "Why are you interested in joining this institution",
+					"categories": ["general", "institution"]
+				}, {
+					"question": "Why are you interested in joining this department?",
+					"categories": ["general", "institution"]
+				}, {
+					"question": "Whom at the university would you collaborate with on research?",
+					"categories": ["general", "institution"]
+				}, {
+					"question": "What are your teaching interests, or what is your teaching philosophy?",
+					"categories": ["teaching"]
+				}, {
+					"question": "What questions do you have for the search committee?",
+					"categories": ["general"]
+				}
+			]
+		},
+		{
+			"source_url": "https://www.cs.cornell.edu/sweirich/jobsearch/resources.htm",
+			"source_name": "\"Stephanie's list of Computer Science Faculty Job Search Resources\" by Stephanie Weirich",
+			"questions": [
+				{
+					"question": "Do you have any questions?",
+					"categories": ["general"]
+				}, {
+					"question": "What are you going to do next?",
+					"categories": ["research"]
+				}, {
+					"question": "Describe your research to me in 5 minutes.",
+					"categories": ["research"]
+				}, {
+					"question": "How will you make your decision about where to go?",
+					"categories": ["general"]
+				}, {
+					"question": "What would you like to teach?",
+					"categories": ["teaching"]
+				}, {
+					"question": "Where do you get your inspiration? How do you do research?",
+					"categories": ["research"]
+				}, {
+					"question": "What will be the first thesis that you supervise?",
+					"categories": ["research", "mentoring"]
+				}, {
+					"question": "How do you evaluate research in your area?",
+					"categories": ["research", "general"]
+				}, {
+					"question": "Isn't your field a dead field that hasn't produced anything worthwhile in the past 20 years?",
+					"categories": ["research", "provocative"]
+				}, {
+					"question": "Where else do you have interviews?",
+					"note": "Note that this question might be illegal.",
+					"categories": ["general", "illegal"]
+				},
+				{
+					"question": "Do you have any offers?",
+					"note": "Note that this question might be illegal.",
+					"categories": ["general"]
+				}
+			]
+		},
+		{
+			"source_url": "https://www.unl.edu/gradstudies/connections/academic-job-interview-questions-help-you-prepare",
+			"source_name": "\"The Academic Job Interview: Questions to Help you Prepare\" by the Office of Graduate Studies of University of Nebraska-Lincoln",
+			"questions": [
+				{
+					"question": "Describe your current research. Will you be continuing in this research track? Describe your future research plans.",
+					"categories": ["research"]
+				}, {
+					"question": "How would you involve graduate/undergraduate students in your research?",
+					"categories": ["research", "mentoring"]
+				}, {
+					"question": "What is the cutting edge in your field and how does your work extend it?",
+					// How will you go about revising your dissertation for publication?
+					"categories": ["research"]
+				}, {
+					"question": "Tell us how your research has influenced your teaching. In what ways have you been able to bring the insights of your research to your courses at the undergraduate level?",
+					"categories": ["research", "teaching"]
+				}, {
+					"question": "What is your philosophy of teaching?",
+					"categories": ["teaching"]
+				}, {
+					"question": "What classes could you teach in our program?",
+					"categories": ["teaching", "institution"]
+				}, {
+					"question": "How would you plan a course in ___? What texts would you use? What topics would you cover?",
+					"categories": ["teaching"]
+				}, {
+					"question": "How would you evaluate student learning?",
+					"categories": ["teaching"]
+				}, {
+					"question": "How do you bring diversity into your day-today teaching?",
+					"categories": ["diversity", "teaching"]
+				}, {
+					"question": "You've seen our mission statement. How would you see yourself contributing to our mission and campus atmosphere?",
+					"categories": ["general", "institution"]
+				}, {
+					"question": "What is your perception of the responsibilities of a full-time faculty member in this institution/department?",
+					"categories": ["general", "institution"]
+				}, {
+					"question": "How will you fit in as a department member and what kind of contribution will you make to our community?",
+					// Apart from the obvious financial reasons, why would you like to join the Faculty of Y at University X?
+					"categories": ["general", "institution"]
+				}, {
+					"question": "Could you tell us about your long-range plans and commitment to this department?",
+					"categories": ["general", "service", "institution"]
+				}, {
+					"question": "Do you have children?",
+					"note": "While this question is illegal in many countries, it might still be asked in one way or the other",
+					"categories": ["general", "illegal"]
+				}
+			]
+		},
+		{
+			"source_url": "https://provost.columbia.edu/sites/default/files/content/BestPracticesFacultySearchHiring.pdf",
+			"source_name": "Guide to Best Practices in Faculty Search and Hiring by Columbia University (page 25)",
+			"questions": [
+				{
+					"question": "What do you see as the most challenging aspects of an increasingly diverse academic community? What have you done, formally or informally, to meet such challenges?",
+					"categories": ["diversity"]
+				}, {
+					"question": "How do you view diversity course requirements for students?",
+					"categories": ["diversity"]
+				}, {
+					"question": "How have you worked with students and others to foster the creation of an environment that's receptive to diversity in the classroom, in the curriculum, and in the department?",
+					"categories": ["diversity", "teaching", "mentoring"]
+				}, {
+					"question": "How have you mentored, supported, or encouraged students on your campus? What about underrepresented minority students, women, or international students?",
+					"categories": ["diversity", "mentoring"]
+				}, {
+					"question": "In what ways have you integrated diversity as part of your professional development?",
+					"categories": ["diversity"]
+				}
+			]
+		},
+		{
+			"source_url": "https://pg.ucsd.edu/guo-faculty-job-search.pdf",
+			"source_name": "\"Philip's notes on the tenure-track assistant professor job search\" by Philip Guo",
+			"questions": [
+				{
+					"question": "I missed your job talk; what was it about?",
+					// • Why do you want to leave Google to become a professor?
+					// • Why can’t you do what you want in industry instead?
+					"categories": ["research", "general"]
+				}, {
+					"question": "How do you plan on funding your research?",
+					"categories": ["funding"]
+				}, {
+					"question": "What's your secret weapon in terms of research?",
+					"categories": ["research"]
+				}, {
+					"question": "What makes your Ph.D. career unique?",
+					"categories": ["general"]
+				}, {
+					"question": "What were the main contributions of your Ph.D. dissertation (or recent work)?",
+					"categories": ["general", "research"]
+				}, {
+					"question": "What motivated you to choose your Ph.D. dissertation topic (or recent work)?",
+					"categories": ["general", "research"]
+				}, {
+					"question": "What was the biggest insight in your dissertation work (or recent work)?",
+					"categories": ["general", "research"]
+				}, {
+					"question": "What were the main challenges or hard parts in your dissertation work (or recent work)?",
+					// What makes your dissertation more than merely a collection of tools built for specific audiences? Where’s the scientific “beef” in it?
+					"categories": ["general", "research"]
+				}, {
+					"question": "Why should anyone care about your dissertation work (or recent work)?",
+					// • Why are you now switching your research focus to educational technology?
+					"categories": ["general", "research"]
+				}, {
+					"question": "What is the scope of your interests in your field?",
+					"categories": ["general"]
+				}, {
+					"question": "What research programs within the department will you create or strengthen?",
+					// • What does HCI (Human-Computer Interaction) research mean to you?
+					"categories": ["research", "service", "institution"]
+				}, {
+					"question": "What type of research environment would be your ideal in a department?",
+					"categories": ["research", "general"]
+				}, {
+					"question": "How will you mentor Ph.D. students?",
+					"categories": ["mentoring"]
+				}, {
+					"question": "How will you mentor undergraduate students?",
+					"categories": ["mentoring"]
+				}, {
+					"question": "What type of research group do you envision forming?",
+					"categories": ["research"]
+				}, {
+					"question": "What's the first student project that you can supervise?",
+					"categories": ["mentoring"]
+				}, {
+					"question": "Why is your field important and where is it going?",
+					"categories": ["research", "general"]
+				}, {
+					"question": "What do you see yourself doing in the next 5 years, and why?",
+					"categories": ["general", "research"]
+				}, {
+					"question": "What do you see yourself doing in 10 years, and why?",
+					"categories": ["general", "research"]
+				}, {
+					"question": "Why should anyone care about your future research agenda?",
+					"categories": ["research", "provocative"]
+				}, {
+					"question": "How do you plan on evaluating and validating your future research?",
+					"categories": ["research"]
+				}, {
+					"question": "What classes would you love to teach?",
+					"categories": ["teaching"]
+				}, {
+					"question": "What classes will you be able to teach with little preparation?",
+					"categories": ["teaching"]
+				}, {
+					"question": "What classes will you be able to teach with a bit more preparation?",
+					"categories": ["teaching"]
+				}, {
+					"question": "What new classes will you be able to create?",
+					"categories": ["teaching"]
+				}, {
+					"question": "What's your overall teaching philosophy?",
+					"categories": ["teaching"]
+				}, {
+					"question": "What's your favorite thing about teaching?",
+					"categories": ["teaching"]
+				}
+			]
+		},
+		{
+			"source_url": "http://matt.might.net/articles/advice-for-academic-job-hunt/#interviewing",
+			"source_name": "\"Academic job search advice\" by Matt Might",
+			"questions": [
+				{
+					"question": "I can't/didn't make your talk; can you give me a quick overview of your research?",
+					"categories": ["research"]
+				},
+				{
+					"question": "Do you have a teaching preference?",
+					"categories": ["teaching"]
+				},
+				{
+					"question": "Where else are you interviewing?",
+					"note": "This question might be illegal in your country.",
+					"categories": ["general", "illegal"]
+				},
+				{
+					"question": "Where do you see your research going?",
+					"categories": ["research"]
+				},
+				{
+					"question": "Say something to prove to me that your research/field is going to matter.",
+					"categories": ["research", "provocative"]
+				},
+				{
+					"question": "Do you have any more questions?",
+					"categories": ["general"]
+				},
+				{
+					"question": "Do you think you could apply your research to X?",
+					"categories": ["research"]
+				},
+				{
+					"question": "Do you think you could apply X to your research?",
+					"categories": ["research"]
+				}
+			]
+		},
+		{
+			"source_url": "https://www.cs.princeton.edu/~jrex/questions.html",
+			"source_name": "\"Example Academic Interview Questions\" by Jennifer Rexford",
+			"questions": [
+				{
+					"question": "What government agencies would you target for funding your research?",
+					"categories": ["funding"]
+				}, {
+					"question": "What companies would use your research? Any small companies?",
+					"categories": ["research"]
+				}, {
+					"question": "In what conferences/journals would you publish your work? How do these conferences/journals differ in the type of papers they publish?",
+					"categories": ["research"]
+				}, {
+					"question": "Who are your \"competitors\" at other schools?",
+					"categories": ["general", "research"]
+				}, {
+					"question": "Is it possible for academic researchers to make significant contributions to your field, or are industrial technology and resources necessary?",
+					"categories": ["general", "research"]
+				}, {
+					"question": "What would you consider as the weaknesses in our department?",
+					"categories": ["general", "institution"]
+				}, {
+					"question": "Who here would you consider as potential collaborators?",
+					"categories": ["general", "institution"]
+				}, {
+					"question": "Who would you consider as potential mentors in the department?",
+					"categories": ["general", "institution"]
+				}, {
+					"question": "Which of our courses are you qualified to teach?",
+					"categories": ["teaching", "institution"]
+				}, {
+					"question": "Which of our courses are you most interested in teaching?",
+					"categories": ["teaching", "institution"]
+				}, {
+					"question": "Given that existing technologies and tools will be obsolete in a few years, what should we teach our students?",
+					"categories": ["teaching"]
+				}, {
+					"question": "How would you approach developing a curriculum from scratch?",
+					"categories": ["teaching"]
+				}, {
+					"question": "What is your teaching philosophy?",
+					"categories": ["teaching"]
+				}, {
+					"question": "What do you think about having undergraduates serve as TAs?",
+					"categories": ["teaching"]
+				}, {
+					"question": "If an undergraduate wanted to work with you, what type of project would you give them?",
+					"categories": ["mentoring"]
+				}, {
+					"question": "What start-up funds/facilities would you need to establish your research?",
+					"categories": ["research", "funding"]
+				}, {
+					"question": "How would you organize/manage your research group?",
+					"categories": ["mentoring", "research"]
+				}, {
+					"question": "How many graduate students would you like to have in your group?",
+					"categories": ["mentoring", "research"]
+				}, {
+					"question": "Where do you see yourself in five years? Ten years?",
+					"categories": ["general"]
+				}, {
+					"question": "What would be possible titles for the first three PhD thesis projects in your research group?",
+					"categories": ["research", "mentoring"]
+				}, {
+					"question": "What new courses would you create on your research area?",
+					"categories": ["teaching", "research"]
+				}, {
+					"question": "How did you decide what school to attend for your PhD?",
+					"categories": ["general"]
+				}, {
+					"question": "How did you choose your thesis topic?",
+					"categories": ["general"]
+				}, {
+					"question": "What would you consider as your biggest weakness in starting a faculty position?",
+					"categories": ["general"]
+				}, {
+					"question": "If you start having difficulty juggling the combination of research, teaching, advising, and proposal-writing, what would you do to fix the problem?",
+					"categories": ["general"]
+				}, {
+					"question": "Do you have entrepreneurial aspirations?",
+					"categories": ["general"]
+				}, {
+					"question": "Who would you most like to emulate?",
+					"categories": ["general"]
+				}, {
+					"question": "What are your non-technical interests?",
+					"categories": ["general"]
+				}, {
+					"question": "What factors will determine which academic/research position is most attractive to you?",
+					"categories": ["general"]
+				}
+			]
+		}, {
+			"source_url": "https://bettstetter.medium.com/15-questions-you-will-be-asked-in-an-interview-for-a-professorship-position-a01fcafe4ab2",
+			"source_name": "\"Questions in professorship hearings\" by Christian Bettstetter",
+			"questions": [
+				{
+					"question": "What was your greatest scientific achievement so far and why?",
+					"categories": ["general", "research"]
+				}, {
+					"question": "Who has influenced you the most?",
+					"categories": ["general"]
+				}, {
+					"question": "What will be the topics of the first three PhD students you will advise, and what is innovative about these topics?",
+					"categories": ["research", "mentoring"]
+				}, {
+					"question": "What are the most important challenges in your research domain?",
+					"categories": ["research"]
+				}, {
+					"question": "How large will your group be, and how will you attract students?",
+					"categories": ["research", "mentoring", "general"]
+				}, {
+					"question": "Which synergies do you see with the existing groups in our department?",
+					"categories": ["collaboration", "institution"]
+				}, {
+					"question": "How will you raise funding for your research?",
+					"categories": ["funding", "research"]
+				}, {
+					"question": "Who are your main collaborators and competitors?",
+					"categories": ["collaboration", "general"]
+				}, {
+					"question": "Which teaching activities do you plan, how do they fit into our program, and what is your teaching style and philosophy?",
+					"categories": ["teaching"]
+				}, {
+					"question": "Which resources do you need?",
+					"categories": ["funding", "general"]
+				}, {
+					"question": "What would you do with 3 Million Euros/Dollars?",
+					"categories": ["funding", "general"]
+				}, {
+					"question": "What will your name stand for in 15-20 years?",
+					"categories": ["general"]
+				}, {
+					"question": "We are lacking female [or male] students in our program. How will you contribute to raise the number of female [or male] students?",
+					"categories": ["diversity"]
+				}, {
+					"question": "In which companies or organizations will your graduates find jobs in our region?",
+					"categories": ["general", "institution"]
+				}, {
+					"question": "Why do you want to join this university?",
+					"categories": ["general"]
+				}
+			]
+		}, {
+			"source_url": "https://career.engr.psu.edu/students/graduate/academic/interviewing.aspx",
+			"source_name": "\"Interviewing\" by Career Resources &amp; Employer Relations at the Penn State College of Engineering",
+			"questions": [
+				{
+					"question": "Why are you interested in this department/institution?",
+					"categories": ["institution"]
+				}, {
+					"question": "Where else are you interviewing?",
+					"categories": ["general", "illegal"]
+				}, {
+					"question": "Which researchers in your field have inspired your interest in this area?",
+					"categories": ["research", "general"]
+				}, {
+					"question": "Can you talk about your dissertation?",
+					"categories": ["general"]
+				}, {
+					"question": "When do you expect to finish your dissertation?",
+					"categories": ["general"]
+				}, {
+					"question": "What difficulties have you experienced in researching this subject?",
+					"categories": ["research"]
+				}, {
+					"question": "How does your research contribute to this field?",
+					"categories": ["research"]
+				}, {
+					"question": "What are your research goals?",
+					"categories": ["research"]
+				}, {
+					"question": "Do you have a plan for funding your future research beyond departmental resources?",
+					"categories": ["funding"]
+				}, {
+					"question": "What experience do you have doing research with undergraduate students?",
+					"categories": ["mentoring", "research"]
+				}, {
+					"question": "Can you talk about your publications?",
+					"categories": ["research"]
+				}, {
+					"question": "What is your teaching philosophy?",
+					"categories": ["teaching"]
+				}, {
+					"question": "What challenges have you experienced as a teacher?",
+					"categories": ["teaching"]
+				}, {
+					"question": "What do you enjoy about teaching?",
+					"categories": ["teaching"]
+				}, {
+					"question": "What types of undergraduate and graduate courses would you be interested in teaching, and why?",
+					"categories": ["teaching"]
+				}, {
+					"question": "Which textbooks might you use in your teaching?",
+					"categories": ["teaching"]
+				}, {
+					"question": "What would be your ideal course load?",
+					"categories": ["teaching"]
+				}, {
+					"question": "How do you feel you could contribute to this department?",
+					"categories": ["institution"]
+				}, {
+					"question": "How would your research area(s) of interest fit with the work already being done in this department?",
+					"categories": ["research", "institution"]
+				}, {
+					"question": "Which faculty members in our department would you be interested in collaborating with, and why?",
+					"categories": ["institution", "collaboration"]
+				}, {
+					"question": "In what ways could you make a contribution at this institution beyond this department?",
+					"categories": ["institution", "collaboration"]
+				}, {
+					"question": "What are your salary requirements?",
+					"categories": ["general"]
+				}, {
+					"question": "What do you like to do in your spare time?",
+					"categories": ["general"]
+				}
+
+			]
+		}
+
+	]
+
+	var questions = []
+	var sources = {}
+	var categories = {}
+	var notes = {}
+
+	for (i in questionsJson) {
+		source = questionsJson[i]
+		sourceString = '<a href="' + source['source_url'] + '">' + source['source_name'] + '</a>'
+		for (j in source.questions) {
+			if (typeof source.questions[j] == 'string') {
+				// simple question string
+				question = source.questions[j];
+			} else {
+				// more complex object
+				questionObject = source.questions[j];
+				question = questionObject['question'];
+				if ('note' in questionObject) {
+					notes[question] = questionObject['note'];
+				}
+				if ('categories' in questionObject) {
+					categories[question] = questionObject['categories'];
+					includedCategories = includedCategories.concat(questionObject['categories']);
+				}
 			}
-			,
-			{
-				"question" :"What makes you different from the other candidates?",
-				"categories" : ["general"]
-			},
-			{
-				"question" :"What are your plans for research?",
-				"categories" : ["research"]
-			},
-			{
-				"question" :"What are your plans for research in the next year?",
-				"categories" : ["research"]
-			},
-			{
-				"question" : "What are your plans for research in the next five years?",
-				"categories" : ["research"]
-			},
-			{
-				"question" : "What are your plans for research in the next ten years?",
-				"categories" : ["research"]
-			},
-			{
-				"question" : "What courses could you offer to teach?",
-				"categories" : ["teaching"]
-			},
-			{
-				"question" : "How would you contribute to the administration of the department?",
-				"categories" : ["service", "institution"]
-			}
-		]
-	},
-	{
-		"source_url" : "https://web.eecs.utk.edu/~azh/blog/facultyinterviewquestions.html",
-		"source_name" : "\"Faculty interview questions I asked and got asked\" by Austin Z. Henley",
-		"questions" : [
-			{
-				"question" : "Tell us about your research.",
-				"categories" : ["research"]
-			}, {
-				"question" : "What are the contributions of your work?",
-				"categories" : ["research"]
-			}, {
-				"question" : "Can you explain the theory behind your work?",
-				"categories" : ["research"]
-			}, {
-				"question" : "How does your research relate to X? (assume that you do not know what X is)",
-				"categories" : ["research"]
-			}, {
-				"question" : "How is your work different than other's in your field?",
-				"categories" : ["research"]
-			}, {
-				"question" : "How will you distinguish yourself from your advisor?",
-				"categories" : ["general"]
-			}, {
-				"question" : "What are your 1st year goals as faculty?",
-				"categories" : ["general"]
-			}, {
-				"question" : "What are your 5 year goals as faculty?",
-				"categories" : ["general"]
-			}, {
-				"question" : "What are your funding plans?",
-				"categories" : ["funding"]
-			}, {
-				"question" : "What other funding agencies can you submit to besides NSF?",
-				"categories" : ["funding", "us-specific"]
-			}, {
-				"question" : "What will be the topic of your first grant proposal?",
-				"categories" : ["funding"]
-			}, {
-				"question" : "Which specific NSF programs will you submit to?",
-				"categories" : ["funding", "us-specific"]
-			}, {
-				"question" : "When will you first apply for the CAREER Award?",
-				"categories" : ["funding", "us-specific"]
-			}, {
-				"question" : "Who will you write your first grant proposal with?",
-				"categories" : ["funding", "institution"]
-			}, {
-				"question" : "Do you have any grant writing experience?",
-				"categories" : ["funding"]
-			}, {
-				"question" : "What do you want your research group/lab to be like? Number of students?",
-				"categories" : ["general"]
-			}, {
-				"question" : "What is your biggest achievement?",
-				"categories" : ["general"]
-			}, {
-				"question" : "What is your \"home\" conference?",
-				"categories" : ["research"]
-			}, {
-				"question" : "Who will you collaborate with externally?",
-				"categories" : ["general"]
-			}, {
-				"question" : "Who would you collaborate with within the department? What other departments could you work with?",
-				"categories" : ["general", "institution"]
-			}, {
-				"question" : "What will your strategy be in order to publish top-tier papers consistently?",
-				"categories" : ["research"]
-			}, {
-				"question" : "What would you like to teach?",
-			// Can you teach X? (sometimes X was far outside my area),
-				"categories" : ["teaching"]
-			}, {
-				"question" : "What resources do you need for your lab?",
-				"categories" : ["general"]
-			}, {
-				"question" : "Why do you want to work at this institution?",
-				"categories" : ["general", "institution"]
-			}, {
-				"question" : "What are you looking for in a department?",
-				"categories" : ["general"]
-			}, {
-				"question" : "What other schools are you interviewing with?",
-				"categories" : ["general", "illegal"],
-				"note" : "This question might be illegal in some countries."
-			}, {
-				"question" : "What is your timeline [for accepting an offer]?",
-				"categories" : ["general"]
-			}, {
-				"question" : "Why academia? Why not industry?",
-				"categories" : ["general"]
-			}
-		]
-	},
-	{
-		"source_url" : "https://homes.cs.washington.edu/~mernst/advice/academic-job.html",
-		"source_name" : "\"Getting an academic job\" by Michael Ernst",
-		"questions" : [
-			{
-				"question" : "What do you intend to do next? What is your research plan?",
-				"categories" : ["research"]
-			}, {
-				"question" : "What will you be doing in 10 years?",
-				"categories" : ["research"]
-			}, {
-				"question" : "Give me a summary of your work (in 30 seconds).",
-				"categories" : ["research"]
-			}, {
-				"question" : "Give me a summary of your work (in 2 minutes).",
-				"categories" : ["research"]
-			}, {
-				"question" : "Give me a summary of your work (in 5 minutes).",
-				"categories" : ["research"]
-			}, {
-				"question" : "Who do you consider the best people in your field?",
-				"categories" : ["general"]
-			}, {
-				"question" : "What is your biggest weakness as a teacher?",
-				"categories" : ["teaching"]
-			}, {
-				"question" : "How can your results help me in my own research?",
-				"categories" : ["general", "research"]
-			}, {
-				"question" : "What are you looking for in a school? Why did you apply here?",
-				"categories" : ["general", "institution"]
-			}, {
-				"question" : "What is your methodology for problem-solving?",
-				"categories" : ["research"]
-			}, {
-				"question" : "What are other people at your current institution doing?",
-				"categories" : ["general"]
-			}, {
-				"question" : "What is the most interesting part of computer science besides your own area?",
-				"categories" : ["research"]
-			}, {
-				"question" : "What are your hobbies or interests?",
-				"categories" : ["general"]
-			}
-		]
-	},
-	{
-		"source_url" : "https://csguides.github.io/grad-job-guide/interviewing/",
-		"source_name" : "CS Grad Job and Interview Guide",
-		"questions" : [
-			{
-				"question" : "Tell me how your interests are aligned with some of the faculty here. Who could you work with?",
-				"categories" : ["general", "institution"]
-			},
-			{
-				"question" : "Are you married? Do you have a two-body problem?",
-				"note" : "While this question is illegal in many countries, it might still be asked in one way or the other",
-				"categories" : ["general", "illegal"]
-			},
-			{
-				"question" : "What will your CAREER award be about?",
-				"categories" : ["funding", "us-specific"]
-			},
-			{
-				"question" : "What will your first student's Ph.D. topic be (in general)? How many students do you plan to have?",
-				"categories" : ["research", "mentoring"]
-			}, {
-				"question" : "What courses would you be willing to teach? Are you interested in creating new courses?",
-				"categories" : ["teaching"]
-			}, {
-				"question" : "How will you divide your time between research, teaching and service?",
-				"categories" : ["general", "research", "teaching", "service"]
-			}, {
-				"question" : "What sort of research will you be doing in the future?",
-				"categories" : ["research"]
-			}, {
-				"question" : "Where do you get most of your funding? NSF? Other government agencies? Corporate funding?",
-				"categories" : ["funding", "us-specific"]
-			}, {
-				"question" : "Where do you get most of your funding?",
-				"categories" : ["funding"]
-			}
-		]
-	},
-	{
-		"source_url" : "https://shomir.net/tt_job_guide.html",
-		"source_name" : "\"Guide for the Tenure-Track Job Market in Computer/Information Sciences\" by Shomir Wilson",
-		"questions" : [
-			{
-				"question" : "Why are you interested in joining this institution",
-				"categories" : ["general", "institution"]
-			}, {
-				"question" : "Why are you interested in joining this department?",
-				"categories" : ["general", "institution"]
-			}, {
-				"question" : "Whom at the university would you collaborate with on research?",
-				"categories" : ["general", "institution"]
-			}, {
-				"question" : "What are your teaching interests, or what is your teaching philosophy?",
-				"categories" : ["teaching"]
-			}, {
-				"question" : "What questions do you have for the search committee?",
-				"categories" : ["general"]
-			}
-		]
-	},
-	{
-		"source_url" : "https://www.cs.cornell.edu/sweirich/jobsearch/resources.htm",
-		"source_name" : "\"Stephanie's list of Computer Science Faculty Job Search Resources\" by Stephanie Weirich",
-		"questions" : [
-			{
-				"question" : "Do you have any questions?",
-				"categories" : ["general"]
-			}, {
-				"question" : "What are you going to do next?",
-				"categories" : ["research"]
-			}, {
-				"question" : "Describe your research to me in 5 minutes.",
-				"categories" : ["research"]
-			}, {
-				"question" : "How will you make your decision about where to go?",
-				"categories" : ["general"]
-			}, {
-				"question" : "What would you like to teach?",
-				"categories" : ["teaching"]
-			}, {
-				"question" : "Where do you get your inspiration? How do you do research?",
-				"categories" : ["research"]
-			}, {
-				"question" : "What will be the first thesis that you supervise?",
-				"categories" : ["research", "mentoring"]
-			}, {
-				"question" : "How do you evaluate research in your area?",
-				"categories" : ["research", "general"]
-			}, {
-				"question" : "Isn't your field a dead field that hasn't produced anything worthwhile in the past 20 years?",
-				"categories" : ["research", "provocative"]
-			}, {
-				"question" : "Where else do you have interviews?",
-				"note" : "Note that this question might be illegal.",
-				"categories" : ["general", "illegal	"]
-			},
-			{
-				"question" : "Do you have any offers?",
-				"note" : "Note that this question might be illegal.",
-				"categories" : ["general"]
-			}
-		]
-	},	
-	{
-		"source_url" : "https://www.unl.edu/gradstudies/connections/academic-job-interview-questions-help-you-prepare",
-		"source_name" : "\"The Academic Job Interview: Questions to Help you Prepare\" by the Office of Graduate Studies of University of Nebraska-Lincoln",
-		"questions" : [
-			{
-				"question" : "Describe your current research. Will you be continuing in this research track? Describe your future research plans.",
-				"categories" : ["research"]
-			}, {
-				"question" : "How would you involve graduate/undergraduate students in your research?",
-				"categories" : ["research", "mentoring"]
-			}, {
-				"question" : "What is the cutting edge in your field and how does your work extend it?",
-			// How will you go about revising your dissertation for publication?
-				"categories" : ["research"]
-			}, {
-				"question" : "Tell us how your research has influenced your teaching. In what ways have you been able to bring the insights of your research to your courses at the undergraduate level?",
-				"categories" : ["research", "teaching"]
-			}, {
-				"question" : "What is your philosophy of teaching?",
-				"categories" : ["teaching"]
-			}, {
-				"question" : "What classes could you teach in our program?",
-				"categories" : ["teaching", "institution"]
-			}, {
-				"question" : "How would you plan a course in ___? What texts would you use? What topics would you cover?",
-				"categories" : ["teaching"]
-			}, {
-				"question" : "How would you evaluate student learning?",
-				"categories" : ["teaching"]
-			}, {
-				"question" : "How do you bring diversity into your day-today teaching?",
-				"categories" : ["diversity", "teaching"]
-			}, {
-				"question" : "You've seen our mission statement. How would you see yourself contributing to our mission and campus atmosphere?",
-				"categories" : ["general", "institution"]
-			}, {
-				"question" : "What is your perception of the responsibilities of a full-time faculty member in this institution/department?",
-				"categories" : ["general", "institution"]
-			}, {
-				"question" : "How will you fit in as a department member and what kind of contribution will you make to our community?",
-			// Apart from the obvious financial reasons, why would you like to join the Faculty of Y at University X?
-				"categories" : ["general", "institution"]
-			}, {
-				"question" : "Could you tell us about your long-range plans and commitment to this department?",
-				"categories" : ["general", "service", "institution"]
-			}, {
-				"question" : "Do you have children?",
-				"note" : "While this question is illegal in many countries, it might still be asked in one way or the other",
-				"categories" : ["general", "illegal"]
-			}
-		]
-	},
-	{
-		"source_url" : "https://provost.columbia.edu/sites/default/files/content/BestPracticesFacultySearchHiring.pdf",
-		"source_name" : "Guide to Best Practices in Faculty Search and Hiring by Columbia University (page 25)",
-		"questions" : [
-			{
-				"question" : "What do you see as the most challenging aspects of an increasingly diverse academic community? What have you done, formally or informally, to meet such challenges?",
-				"categories" : ["diversity"]
-			}, {
-				"question" : "How do you view diversity course requirements for students?",
-				"categories" : ["diversity"]
-			}, {
-				"question" : "How have you worked with students and others to foster the creation of an environment that's receptive to diversity in the classroom, in the curriculum, and in the department?",
-				"categories" : ["diversity", "teaching", "mentoring"]
-			}, {
-				"question" : "How have you mentored, supported, or encouraged students on your campus? What about underrepresented minority students, women, or international students?",
-				"categories" : ["diversity", "mentoring"]
-			}, {
-				"question" : "In what ways have you integrated diversity as part of your professional development?",
-				"categories" : ["diversity"]
-			}
-		]
-	},
-	{
-		"source_url" : "https://pg.ucsd.edu/guo-faculty-job-search.pdf",
-		"source_name" : "\"Philip's notes on the tenure-track assistant professor job search\" by Philip Guo",
-		"questions" : [
-			{
-				"question" : "I missed your job talk; what was it about?",
-			// • Why do you want to leave Google to become a professor?
-			// • Why can’t you do what you want in industry instead?
-				"categories" : ["research", "general"]
-			}, {
-				"question" : "How do you plan on funding your research?",
-				"categories" : ["funding"]
-			}, {
-				"question" : "What's your secret weapon in terms of research?",
-				"categories" : ["research"]
-			}, {
-				"question" : "What makes your Ph.D. career unique?",
-				"categories" : ["general"]
-			}, {
-				"question" : "What were the main contributions of your Ph.D. dissertation (or recent work)?",
-				"categories" : ["general", "research"]
-			}, {
-				"question" : "What motivated you to choose your Ph.D. dissertation topic (or recent work)?",
-				"categories" : ["general", "research"]
-			}, {
-				"question" : "What was the biggest insight in your dissertation work (or recent work)?",
-				"categories" : ["general", "research"]
-			}, {
-				"question" : "What were the main challenges or hard parts in your dissertation work (or recent work)?",
-			// What makes your dissertation more than merely a collection of tools built for specific audiences? Where’s the scientific “beef” in it?
-				"categories" : ["general", "research"]
-			}, {
-				"question" : "Why should anyone care about your dissertation work (or recent work)?",
-			// • Why are you now switching your research focus to educational technology?
-				"categories" : ["general", "research"]
-			}, {
-				"question" : "What is the scope of your interests in your field?",
-				"categories" : ["general"]
-			}, {
-				"question" : "What research programs within the department will you create or strengthen?",
-			// • What does HCI (Human-Computer Interaction) research mean to you?
-				"categories" : ["research", "service", "institution"]
-			}, {
-				"question" : "What type of research environment would be your ideal in a department?",
-				"categories" : ["research", "general"]
-			}, {
-				"question" : "How will you mentor Ph.D. students?",
-				"categories" : ["mentoring"]
-			}, {
-				"question" : "How will you mentor undergraduate students?",
-				"categories" : ["mentoring"]
-			}, {
-				"question" : "What type of research group do you envision forming?",
-				"categories" : ["research"]
-			}, {
-				"question" : "What's the first student project that you can supervise?",
-				"categories" : ["mentoring"]
-			}, {
-				"question" : "Why is your field important and where is it going?",
-				"categories" : ["research", "general"]
-			}, {
-				"question" : "What do you see yourself doing in the next 5 years, and why?",
-				"categories" : ["general", "research"]
-			}, {
-				"question" : "What do you see yourself doing in 10 years, and why?",
-				"categories" : ["general", "research"]
-			}, {
-				"question" : "Why should anyone care about your future research agenda?",
-				"categories" : ["research", "provocative"]
-			}, {
-				"question" : "How do you plan on evaluating and validating your future research?",
-				"categories" : ["research"]
-			}, {
-				"question" : "What classes would you love to teach?",
-				"categories" : ["teaching"]
-			}, {
-				"question" : "What classes will you be able to teach with little preparation?",
-				"categories" : ["teaching"]
-			}, {
-				"question" : "What classes will you be able to teach with a bit more preparation?",
-				"categories" : ["teaching"]
-			}, {
-				"question" : "What new classes will you be able to create?",
-				"categories" : ["teaching"]
-			}, {
-				"question" : "What's your overall teaching philosophy?",
-				"categories" : ["teaching"]
-			}, {
-				"question" : "What's your favorite thing about teaching?",
-				"categories" : ["teaching"]
-			}
-		]
-	},
-	{
-		"source_url" : "http://matt.might.net/articles/advice-for-academic-job-hunt/#interviewing",
-		"source_name" : "\"Academic job search advice\" by Matt Might",
-		"questions" : [
-			{
-				"question" : "I can't/didn't make your talk; can you give me a quick overview of your research?",
-				"categories" : ["research"]
-			},
-			{
-				"question" : "Do you have a teaching preference?",
-				"categories" : ["teaching"]
-			},
-			{
-				"question" : "Where else are you interviewing?",
-				"note" : "This question might be illegal in your country.",
-				"categories" : ["general", "illegal"]
-			},
-			{
-				"question" : "Where do you see your research going?",
-				"categories" : ["research"]
-			},
-			{
-				"question" : "Say something to prove to me that your research/field is going to matter.",
-				"categories" : ["research", "provocative"]
-			},
-			{
-				"question" : "Do you have any more questions?",
-				"categories" : ["general"]
-			},
-			{
-				"question" : "Do you think you could apply your research to X?",
-				"categories" : ["research"]
-			},
-			{
-				"question" : "Do you think you could apply X to your research?",
-				"categories" : ["research"]
-			}
-		]
-	},
-	{
-		"source_url" : "https://www.cs.princeton.edu/~jrex/questions.html",
-		"source_name" : "\"Example Academic Interview Questions\" by Jennifer Rexford",
-		"questions" : [
-			{
-				"question" : "What government agencies would you target for funding your research?",
-				"categories" : ["funding"]
-			}, {
-				"question" : "What companies would use your research? Any small companies?",
-				"categories" : ["research"]
-			}, {
-				"question" : "In what conferences/journals would you publish your work? How do these conferences/journals differ in the type of papers they publish?",
-				"categories" : ["research"]
-			}, {
-				"question" : "Who are your \"competitors\" at other schools?",
-				"categories" : ["general", "research"]
-			}, {
-				"question" : "Is it possible for academic researchers to make significant contributions to your field, or are industrial technology and resources necessary?",
-				"categories" : ["general", "research"]
-			}, {
-				"question" : "What would you consider as the weaknesses in our department?",
-				"categories" : ["general", "institution"]
-			}, {
-				"question" : "Who here would you consider as potential collaborators?",
-				"categories" : ["general", "institution"]
-			}, {
-				"question" : "Who would you consider as potential mentors in the department?",
-				"categories" : ["general", "institution"]
-			}, {
-				"question" : "Which of our courses are you qualified to teach?",
-				"categories" : ["teaching", "institution"]
-			}, {
-				"question" : "Which of our courses are you most interested in teaching?",
-				"categories" : ["teaching", "institution"]
-			}, {
-				"question" : "Given that existing technologies and tools will be obsolete in a few years, what should we teach our students?",
-				"categories" : ["teaching"]
-			}, {
-				"question" : "How would you approach developing a curriculum from scratch?",
-				"categories" : ["teaching"]
-			}, {
-				"question" : "What is your teaching philosophy?",
-				"categories" : ["teaching"]
-			}, {
-				"question" : "What do you think about having undergraduates serve as TAs?",
-				"categories" : ["teaching"]
-			}, {
-				"question" : "If an undergraduate wanted to work with you, what type of project would you give them?",
-				"categories" : ["mentoring"]
-			}, {
-				"question" : "What start-up funds/facilities would you need to establish your research?",
-				"categories" : ["research", "funding"]
-			}, {
-				"question" : "How would you organize/manage your research group?",
-				"categories" : ["mentoring", "research"]
-			}, {
-				"question" : "How many graduate students would you like to have in your group?",
-				"categories" : ["mentoring", "research"]
-			}, {
-				"question" : "Where do you see yourself in five years? Ten years?",
-				"categories" : ["general"]
-			}, {
-				"question" : "What would be possible titles for the first three PhD thesis projects in your research group?",
-				"categories" : ["research", "mentoring"]
-			}, {
-				"question" : "What new courses would you create on your research area?",
-				"categories" : ["teaching", "research"]
-			}, {
-				"question" : "How did you decide what school to attend for your PhD?",
-				"categories" : ["general"]
-			}, {
-				"question" : "How did you choose your thesis topic?",
-				"categories" : ["general"]
-			}, {
-				"question" : "What would you consider as your biggest weakness in starting a faculty position?",
-				"categories" : ["general"]
-			}, {
-				"question" : "If you start having difficulty juggling the combination of research, teaching, advising, and proposal-writing, what would you do to fix the problem?",
-				"categories" : ["general"]
-			}, {
-				"question" : "Do you have entrepreneurial aspirations?",
-				"categories" : ["general"]
-			}, {
-				"question" : "Who would you most like to emulate?",
-				"categories" : ["general"]
-			}, {
-				"question" : "What are your non-technical interests?",
-				"categories" : ["general"]
-			}, {
-				"question" : "What factors will determine which academic/research position is most attractive to you?",
-				"categories" : ["general"]
-			}
-		]
-	}, {
-		"source_url" : "https://bettstetter.medium.com/15-questions-you-will-be-asked-in-an-interview-for-a-professorship-position-a01fcafe4ab2",
-		"source_name" : "\"Questions in professorship hearings\" by Christian Bettstetter",
-		"questions" : [
-			{
-				"question" : "What was your greatest scientific achievement so far and why?",
-				"categories" : ["general", "research"]
-			}, {
-				"question" : "Who has influenced you the most?",
-				"categories" : ["general"]
-			}, {
-				"question" : "What will be the topics of the first three PhD students you will advise, and what is innovative about these topics?",
-				"categories" : ["research", "mentoring"]
-			}, {
-				"question" : "What are the most important challenges in your research domain?",
-				"categories" : ["research"]
-			}, {
-				"question" : "How large will your group be, and how will you attract students?",
-				"categories" : ["research", "mentoring", "general"]
-			}, {
-				"question" : "Which synergies do you see with the existing groups in our department?",
-				"categories" : ["collaboration", "institution"]
-			}, {
-				"question" : "How will you raise funding for your research?",
-				"categories" : ["funding", "research"]
-			}, {
-				"question" : "Who are your main collaborators and competitors?",
-				"categories" : ["collaboration", "general"]
-			}, {
-				"question" : "Which teaching activities do you plan, how do they fit into our program, and what is your teaching style and philosophy?",
-				"categories" : ["teaching"]
-			}, {
-				"question" : "Which resources do you need?",
-				"categories" : ["funding", "general"]
-			}, {
-				"question" : "What would you do with 3 Million Euros/Dollars?",
-				"categories" : ["funding", "general"]
-			}, {
-				"question" : "What will your name stand for in 15-20 years?",
-				"categories" : ["general"]
-			}, {
-				"question" : "We are lacking female [or male] students in our program. How will you contribute to raise the number of female [or male] students?",
-				"categories" : ["diversity"]
-			}, {
-				"question" : "In which companies or organizations will your graduates find jobs in our region?",
-				"categories" : ["general", "institution"]
-			}, {
-				"question" : "Why do you want to join this university?",
-				"categories" : ["general"]
-			}
-		]
-	}, {
-		"source_url" : "https://career.engr.psu.edu/students/graduate/academic/interviewing.aspx",
-		"source_name" : "\"Interviewing\" by Career Resources &amp; Employer Relations at the Penn State College of Engineering",
-		"questions" : [
-			{
-				"question" : "Why are you interested in this department/institution?",
-				"categories" : ["institution"]
-			}, {
-				"question" : "Where else are you interviewing?",
-				"categories" : ["general", "illegal"]
-			}, {
-				"question" : "Which researchers in your field have inspired your interest in this area?",
-				"categories" : ["research", "general"]
-			}, {
-				"question" : "Can you talk about your dissertation?",
-				"categories" : ["general"]
-			}, {
-				"question" : "When do you expect to finish your dissertation?",
-				"categories" : ["general"]
-			}, {
-				"question" : "What difficulties have you experienced in researching this subject?",
-				"categories" : ["research"]
-			}, {
-				"question" : "How does your research contribute to this field?",
-				"categories" : ["research"]
-			}, {
-				"question" : "What are your research goals?",
-				"categories" : ["research"]
-			}, {
-				"question" : "Do you have a plan for funding your future research beyond departmental resources?",
-				"categories" : ["funding"]
-			}, {
-				"question" : "What experience do you have doing research with undergraduate students?",
-				"categories" : ["mentoring", "research"]
-			}, {
-				"question" : "Can you talk about your publications?",
-				"categories" : ["research"]
-			}, {
-				"question" : "What is your teaching philosophy?",
-				"categories" : ["teaching"]
-			}, {
-				"question" : "What challenges have you experienced as a teacher?",
-				"categories" : ["teaching"]
-			}, {
-				"question" : "What do you enjoy about teaching?",
-				"categories" : ["teaching"]
-			}, {
-				"question" : "What types of undergraduate and graduate courses would you be interested in teaching, and why?",
-				"categories" : ["teaching"]
-			}, {
-				"question" : "Which textbooks might you use in your teaching?",
-				"categories" : ["teaching"]
-			}, {
-				"question" : "What would be your ideal course load?",
-				"categories" : ["teaching"]
-			}, {
-				"question" : "How do you feel you could contribute to this department?",
-				"categories" : ["institution"]
-			}, {
-				"question" : "How would your research area(s) of interest fit with the work already being done in this department?",
-				"categories" : ["research", "institution"]
-			}, {
-				"question" : "Which faculty members in our department would you be interested in collaborating with, and why?",
-				"categories" : ["institution", "collaboration"]
-			}, {
-				"question" : "In what ways could you make a contribution at this institution beyond this department?",
-				"categories" : ["institution", "collaboration"]
-			}, {
-				"question" : "What are your salary requirements?",
-				"categories" : ["general"]
-			}, {
-				"question" : "What do you like to do in your spare time?",
-				"categories" : ["general"]
-			}
-		
-		]
+			questions.push(question);
+			sources[question] = sourceString;
+
+		}
 	}
-	
-]
+	console.log(questions)
 
-var questions = []
-var sources = {}
-var categories = {}
-var notes = {}
 
-for (i in questionsJson) {
-	source = questionsJson[i]
-	sourceString = '<a href="' + source['source_url'] + '">' + source['source_name'] +'</a>'
-	for (j in source.questions) {
-		if (typeof source.questions[j] == 'string' ) {
-			// simple question string
-			question = source.questions[j];
+	console.log(questions);
+	console.assert(questions.length > 1);
+
+	function getRandomInt(max) {
+		return Math.floor(Math.random() * Math.floor(max));
+	}
+
+	function checkboxToggle(category) {
+		isChecked = document.getElementById(category).checked;
+		if (isChecked) {
+			includedCategories.push(category);
 		} else {
-			// more complex object
-			questionObject = source.questions[j];
-			question = questionObject['question'];
-			if ('note' in questionObject) {
-				notes[question] = questionObject['note'];
-			}
-			if ('categories' in questionObject) {
-				categories[question] = questionObject['categories'];
+			includedCategories = includedCategories.filter(cat => cat != category);
+		}
+		updateNrCurrentQuestions()
+	}
+
+	function intersect(a, b) {
+		return a.filter(Set.prototype.has, new Set(b));
+	}
+
+	function getFilteredQuestions() {
+		return questions.filter(s => intersect(categories[s], includedCategories).length != 0);
+	}
+
+	function updateNrCurrentQuestions() {
+		document.getElementById("nr_questions").innerHTML = getFilteredQuestions().length
+	}
+
+	function nextQuestion() {
+		console.log(includedCategories);
+		for (i = 0; i < questions.length; i++) {
+			if (!categories[questions[i]]) {
+				console.log(questions[i] + ' has no categories!');
 			}
 		}
-		questions.push(question);
-		sources[question] = sourceString;
-
-	}
-}
-console.log(questions)
-
-
-console.log(questions);
-console.assert(questions.length > 1);
-
-function getRandomInt(max) {
-  return Math.floor(Math.random() * Math.floor(max));
-}
-
-function checkboxToggle(category) {
-	isChecked = document.getElementById(category).checked;
-	if (isChecked) {
-		excludedCategories = excludedCategories.filter(cat => cat != category);
-	} else {
-		excludedCategories.push(category);
-	}
-	updateNrCurrentQuestions()
-}
-
-function intersect(a, b) {
-  return a.filter(Set.prototype.has, new Set(b));
-}
-
-function getFilteredQuestions() {
-	return questions.filter(s => intersect(categories[s], excludedCategories).length == 0);
-}
-
-function updateNrCurrentQuestions() {
-	document.getElementById("nr_questions").innerHTML = getFilteredQuestions().length
-}
-
-function nextQuestion() {
-	console.log(excludedCategories);
-	for (i = 0; i < questions.length; i++) {
-		if (!categories[questions[i]]) {
-			console.log(questions[i] + ' has no categories!');
+		currentQuestions = getFilteredQuestions();
+		updateNrCurrentQuestions()
+		if (currentQuestions.length == 0) {
+			alert("Out of questions!");
+			return;
 		}
+		idx = getRandomInt(currentQuestions.length);
+		question = currentQuestions[idx];
+		if (question in notes) {
+			note = notes[question];
+			document.getElementById("note").innerHTML = note;
+		} else {
+			document.getElementById("note").innerHTML = "";
+		}
+		document.getElementById("question").innerHTML = question;
+		document.getElementById("question_source").innerHTML = sources[currentQuestions[idx]];
+		document.getElementById("categories").innerHTML = categories[question].join(", ");
+		var borderColor;
+		if (categories[question].includes("illegal")) {
+			borderColor = 'red';
+		} else {
+			borderColor = 'green';
+		}
+		document.getElementById("questionborder").style.borderColor = borderColor;
+		questions = questions.filter(s => s != currentQuestions[idx]);
+		startTime = new Date().getTime();
 	}
-	currentQuestions = getFilteredQuestions();
-	updateNrCurrentQuestions()
-	if (currentQuestions.length == 0) {
-		alert("Out of questions!");
-		return;
-	}
-	idx = getRandomInt(currentQuestions.length);
-	question = currentQuestions[idx];
-	if (question in notes) {
-		note = notes[question];
-		document.getElementById("note").innerHTML = note;
-	} else {
-		document.getElementById("note").innerHTML = "";
-	}
-	document.getElementById("question").innerHTML = question;
-	document.getElementById("question_source").innerHTML = sources[currentQuestions[idx]];
-	document.getElementById("categories").innerHTML = categories[question].join(", ");
-	var borderColor;
-	if (categories[question].includes("illegal")) {
-		borderColor = 'red';
-	} else {
-		borderColor = 'green';
-	}
-	document.getElementById("questionborder").style.borderColor = borderColor;
-	questions = questions.filter(s => s != currentQuestions[idx]);
-	startTime = new Date().getTime();
-}
 
-setInterval(updateTimer, 1);
-function updateTimer() {
-  endTime = new Date().getTime()
-  duration = new Date(endTime - startTime)
-  document.getElementById("timer").innerHTML = duration.toISOString().substr(11, 8);
-}
+	setInterval(updateTimer, 1);
+	function updateTimer() {
+		endTime = new Date().getTime()
+		duration = new Date(endTime - startTime)
+		document.getElementById("timer").innerHTML = duration.toISOString().substr(11, 8);
+	}
 
-nextQuestion();
+	nextQuestion();
 
 </script>
 
 
 {% unless page.comments == false %}
-      {% if site.invitationmsg %}
-      <div class="invitation">
-	  <div>
-	      <span class="oi" data-glyph="chat" style="padding-right: 12px;"></span> {{ site.invitationmsg }}
-	  </div>
-      </div>
-      {% endif %}
+{% if site.invitationmsg %}
+<div class="invitation">
+	<div>
+		<span class="oi" data-glyph="chat" style="padding-right: 12px;"></span> {{ site.invitationmsg }}
+	</div>
+</div>
+{% endif %}
 {% endunless %}
-
